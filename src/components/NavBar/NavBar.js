@@ -7,18 +7,24 @@ const NavBar = () => {
   return (
     <nav>
       <Paper className={styles.navContainer}>
-        <div class={styles.logo}>
-          <h2>aaiway</h2>
+        <div className={styles.outerNav}>
+          <div class={styles.logo}>
+            <h2>aaiway</h2>
+          </div>
+          <ul class={styles.navLinks}>
+            <li className={styles.navLink}>
+              <Link className={styles.noDecoration} to="/">
+                Home
+              </Link>
+            </li>
+            <li className={styles.navLink}>
+              <Link className={styles.noDecoration} to="/about">
+                About
+              </Link>
+            </li>
+            <li className={styles.navLink}>Account</li>
+          </ul>
         </div>
-        <ul class={styles.navLinks}>
-          <li className={styles.navLink}>
-            <Link to="/">Home</Link>
-          </li>
-          <li className={styles.navLink}>
-            <Link to="/about">About</Link>
-          </li>
-          <li className={styles.navLink}>Account</li>
-        </ul>
       </Paper>
     </nav>
   );

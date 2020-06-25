@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import styles from "./LoginSignup.module.css";
 import classNames from "classnames";
 
@@ -25,14 +26,33 @@ const LoginSignup = () => {
               <h1>Create Account</h1>
             </span>
 
-            <span style={{ paddingTop: "15px" }}>
-              Or Use Your Email For Registration
-            </span>
             <div className={classNames(styles.createAccountForm)}>
-              <TextField label="Username" variant="outlined" />
-              <TextField label="Email" variant="outlined" />
-              <TextField label="Password" variant="outlined" type="password" />
-              <Button variant="contained">Next</Button>
+              <div class={styles.textFields}>
+                <TextField
+                  className={styles.inputFieldSignup}
+                  size="small"
+                  label="Username"
+                  variant="outlined"
+                />
+                <TextField
+                  className={styles.inputFieldSignup}
+                  size="small"
+                  label="Email"
+                  variant="outlined"
+                />
+                <TextField
+                  className={styles.inputFieldSignup}
+                  size="small"
+                  label="Password"
+                  variant="outlined"
+                  type="password"
+                />
+              </div>
+              <div class={styles.nextBtn}>
+                <Button className={styles.btnPrimaryColor} variant="contained">
+                  Next
+                </Button>
+              </div>
             </div>
           </form>
         </div>
@@ -42,9 +62,29 @@ const LoginSignup = () => {
         >
           <form>
             <h1>Doctor Login</h1>
-            <TextField label="Username" variant="outlined" />
-            <TextField label="Password" variant="outlined" type="password" />
-            <Button variant="contained">Login</Button>
+            <div class={styles.textFields}>
+              <TextField
+                className={styles.inputField}
+                size="small"
+                label="Username"
+                variant="outlined"
+              />
+              <TextField
+                className={styles.inputField}
+                size="small"
+                label="Password"
+                variant="outlined"
+                type="password"
+              />
+            </div>
+            <div className={styles.loginBtn}>
+              <Link className={styles.forgot} to="/forgotPassword">
+                Forgot Password?
+              </Link>
+              <Button className={styles.btnPrimaryColor} variant="contained">
+                Login
+              </Button>
+            </div>
           </form>
         </div>
 
@@ -60,9 +100,19 @@ const LoginSignup = () => {
                 doloremque, recusandae sapiente voluptate a voluptates odio modi
                 aliquam laudantium qui. Odit, fuga.
               </p>
-              <Button variant="contained" onClick={handleLogin}>
-                Login
-              </Button>
+              <div className={styles.overlayLogin}>
+                <p>Already a member?</p>
+                <Button
+                  className={classNames(
+                    styles.loginOverlayBtn,
+                    styles.btnWhite
+                  )}
+                  variant="contained"
+                  onClick={handleLogin}
+                >
+                  Login
+                </Button>
+              </div>
             </div>
             <div
               className={classNames(styles.overlayPanel, styles.overlayRight)}
@@ -74,9 +124,19 @@ const LoginSignup = () => {
                 expedita quam ducimus perferendis repudiandae? Corrupti nisi
                 ipsa at omnis voluptates magni, quia perspiciatis.
               </p>
-              <Button variant="contained" onClick={handleSignup}>
-                Signup
-              </Button>
+              <div className={styles.overlayLogin}>
+                <p>Not a member?</p>
+                <Button
+                  className={classNames(
+                    styles.loginOverlayBtn,
+                    styles.btnWhite
+                  )}
+                  variant="contained"
+                  onClick={handleSignup}
+                >
+                  Signup
+                </Button>
+              </div>
             </div>
           </div>
         </div>

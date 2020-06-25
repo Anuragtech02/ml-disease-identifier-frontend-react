@@ -36,6 +36,10 @@ form {
   text-align: center;
 }
 
+form h1 {
+  font-weight: 400;
+}
+
 .ca {
   padding-top: 25px !important;
   padding-left: 0px !important;
@@ -78,8 +82,7 @@ form {
 }
 
 .createAccountForm {
-  overflow: auto;
-  text-align: left !important;
+  padding: 10px 0;
 }
 
 .container.rightPanelActive .signInContainer {
@@ -143,8 +146,8 @@ form {
 
 .overlay {
   background: #006a4e;
-  background: -webkit-gradient(linear, left top, right top, from(#006a4e), to(#092e20));
-  background: linear-gradient(to right, #006a4e, #092e20);
+  background: -webkit-gradient(linear, left top, right top, from(var(--primaryColor)), to(var(--primaryColorLight)));
+  background: linear-gradient(to right, var(--primaryColor), var(--primaryColorLight));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -213,5 +216,86 @@ form {
 .container.rightPanelActive .overlayRight {
   -webkit-transform: translateX(20%);
           transform: translateX(20%);
+}
+
+.textFields {
+  padding: 20px 0;
+}
+
+.textFields .inputField {
+  margin: 15px 0 !important;
+  width: 100%;
+}
+
+.inputFieldSignup {
+  margin: 10px 0 !important;
+  width: 100%;
+}
+
+.loginBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.loginBtn .forgot {
+  text-decoration: none;
+  color: var(--primaryColor);
+  font-size: small;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: left;
+}
+
+.overlayLogin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.overlayLogin p {
+  text-align: left;
+  padding-right: 10px;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 0 !important;
+}
+
+.nextBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.btnPrimaryColor {
+  background: var(--primaryColor) !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.btnWhite {
+  background: white !important;
+  color: var(--primaryColor);
+  font-weight: 600 !important;
 }
 /*# sourceMappingURL=LoginSignup.module.css.map */

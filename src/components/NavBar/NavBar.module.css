@@ -11,18 +11,23 @@ nav {
 }
 
 .navContainer {
+  width: 100%;
+  background: var(--primaryColor) !important;
+  border-radius: 0 !important;
+}
+
+.outerNav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 100%;
-  border-radius: 0 !important;
+  width: var(--fixedWidth);
+  margin: auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   min-height: 8vh;
-  background: var(--primaryColor) !important;
 }
 
 .navLinks {
@@ -33,19 +38,35 @@ nav {
       -ms-flex-pack: justify;
           justify-content: space-between;
   color: white;
+  width: 30%;
 }
 
 .navLink {
   list-style: none;
+  color: white !important;
 }
 
 .logo {
   text-transform: uppercase;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .logo h2 {
   font-weight: 800 !important;
   color: white;
   letter-spacing: 2px;
+}
+
+.noDecoration {
+  text-decoration: none;
+  color: white;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+.noDecoration:hover {
+  color: rgba(230, 25, 86, 0.8);
 }
 /*# sourceMappingURL=NavBar.module.css.map */

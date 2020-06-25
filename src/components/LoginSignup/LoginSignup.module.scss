@@ -19,6 +19,9 @@ form {
   padding: 0 50px;
   height: 100%;
   text-align: center;
+  h1 {
+    font-weight: 400;
+  }
 }
 .ca {
   padding-top: 25px !important;
@@ -58,8 +61,7 @@ form {
   padding-bottom: 25px;
 }
 .createAccountForm {
-  overflow: auto;
-  text-align: left !important;
+  padding: 10px 0;
 }
 
 .container.rightPanelActive .signInContainer {
@@ -103,8 +105,11 @@ form {
 
 .overlay {
   background: #006a4e;
-  background: -webkit-linear-gradient(to right, #006a4e, #092e20);
-  background: linear-gradient(to right, #006a4e, #092e20);
+  background: linear-gradient(
+    to right,
+    var(--primaryColor),
+    var(--primaryColorLight)
+  );
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -151,4 +156,63 @@ form {
 
 .container.rightPanelActive .overlayRight {
   transform: translateX(20%);
+}
+
+.textFields {
+  padding: 20px 0;
+  .inputField {
+    margin: 15px 0 !important;
+    width: 100%;
+  }
+}
+.inputFieldSignup {
+  margin: 10px 0 !important;
+  width: 100%;
+}
+
+.loginBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .forgot {
+    text-decoration: none;
+    color: var(--primaryColor);
+    font-size: small;
+    flex: 1;
+    text-align: left;
+  }
+}
+
+.overlayLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  p {
+    text-align: left;
+    padding-right: 10px;
+    font-weight: 600;
+    letter-spacing: 0;
+    margin: 0 !important;
+  }
+}
+
+.nextBtn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.btnPrimaryColor {
+  background: var(--primaryColor) !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+.btnWhite {
+  background: white !important;
+  color: var(--primaryColor);
+  font-weight: 600 !important;
 }
