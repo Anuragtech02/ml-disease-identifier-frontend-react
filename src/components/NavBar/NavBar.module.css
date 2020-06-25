@@ -1,0 +1,51 @@
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+.navContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  border-radius: 0 !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 8vh;
+  background: var(--primaryColor) !important;
+}
+
+.navLinks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: white;
+}
+
+.navLink {
+  list-style: none;
+}
+
+.logo {
+  text-transform: uppercase;
+}
+
+.logo h2 {
+  font-weight: 800 !important;
+  color: white;
+  letter-spacing: 2px;
+}
+/*# sourceMappingURL=NavBar.module.css.map */

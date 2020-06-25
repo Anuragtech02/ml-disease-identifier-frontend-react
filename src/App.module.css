@@ -1,1 +1,17 @@
-/* No CSS *//*# sourceMappingURL=App.module.css.map */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+:root {
+  --primaryColor: #004a83;
+}
+
+.container {
+  background-image: url(assets/medicines-bg.jpg);
+  min-height: 100vh;
+}
+/*# sourceMappingURL=App.module.css.map */

@@ -1,0 +1,31 @@
+nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: sticky;
+}
+.navContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-radius: 0 !important;
+  align-items: center;
+  min-height: 8vh;
+  background: var(--primaryColor) !important;
+}
+.navLinks {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+.navLink {
+  list-style: none;
+}
+.logo {
+  text-transform: uppercase;
+  h2 {
+    font-weight: 800 !important;
+    color: white;
+    letter-spacing: 2px;
+  }
+}
