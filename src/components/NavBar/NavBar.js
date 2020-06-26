@@ -8,10 +8,14 @@ const NavBar = () => {
     <nav>
       <Paper className={styles.navContainer}>
         <div className={styles.outerNav}>
-          <div class={styles.logo}>
-            <h2>aaiway</h2>
+          <div className={styles.logo}>
+            <h2>
+              <Link className={styles.noDecoration} to="/">
+                aaiway
+              </Link>
+            </h2>
           </div>
-          <ul class={styles.navLinks}>
+          <ul className={styles.navLinks}>
             <li className={styles.navLink}>
               <Link className={styles.noDecoration} to="/">
                 Home

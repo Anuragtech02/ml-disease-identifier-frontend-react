@@ -88,6 +88,7 @@ form h1 {
 .container.rightPanelActive .signInContainer {
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
+  opacity: 0;
 }
 
 .container.rightPanelActive .signUpContainer {
@@ -246,13 +247,15 @@ form h1 {
 }
 
 .loginBtn .forgot {
-  text-decoration: none;
-  color: var(--primaryColor);
   font-size: small;
+  text-align: left;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  text-align: left;
+}
+
+.loginBtn .noDecoration {
+  color: var(--primaryColor) !important;
 }
 
 .overlayLogin {
@@ -297,5 +300,9 @@ form h1 {
   background: white !important;
   color: var(--primaryColor);
   font-weight: 600 !important;
+}
+
+.noDecoration {
+  text-decoration: none !important;
 }
 /*# sourceMappingURL=LoginSignup.module.css.map */

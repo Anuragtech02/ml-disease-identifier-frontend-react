@@ -1,0 +1,135 @@
+.outerContainer {
+  display: flex;
+  background-image: url(../../assets/doctor-stethescope.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  min-height: 92vh;
+  width: var(--fixedWidth);
+  display: flex;
+  justify-content: flex-start;
+  margin: auto;
+  align-items: center;
+}
+.content1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  transition: all 0.4s ease-in-out;
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+    color: var(--primaryColor);
+    margin-bottom: 10px;
+  }
+}
+form {
+  background: transparent;
+}
+.input {
+  min-width: 300px;
+  text-align: left;
+}
+.inputControl {
+  margin: 20px 0 !important;
+}
+.nextBtn {
+  .btnNext {
+    background: var(--primaryColor);
+    color: white;
+    font-weight: 600;
+  }
+}
+.card {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+}
+
+[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+.content2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 50px;
+  margin: auto;
+  transition: all 0.4s ease-in-out;
+  h3 {
+    width: 100%;
+  }
+  img {
+    padding: 20px;
+    height: 200px;
+    width: 150px;
+  }
+}
+
+[type="file"] + label {
+  background: #f15d22;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Poppins", sans-serif;
+  font-size: inherit;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;
+
+  &:hover {
+    background-color: darken(#f15d22, 10%);
+  }
+
+  &.btn3 {
+    background-color: #ee6d9e;
+    border-radius: 0;
+    overflow: hidden;
+
+    span {
+      display: inline-block;
+      height: 100%;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    &::before {
+      color: #fff;
+      content: "\f574";
+      font-family: "Font Awesome 5 Free";
+      font-size: 130%;
+      height: 100%;
+      left: 0;
+      line-height: 2.6;
+      position: absolute;
+      top: -180%;
+      transition: all 0.3s;
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: darken(#ee6d9e, 30%);
+
+      span {
+        transform: translateY(300%);
+      }
+
+      &::before {
+        top: 0;
+      }
+    }
+  }
+}

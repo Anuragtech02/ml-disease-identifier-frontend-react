@@ -1,0 +1,129 @@
+.outerContainer {
+  background: var(--lightBackground);
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: auto;
+  width: calc(var(--fixedWidth) - 10%);
+  text-align: center;
+  min-height: 92vh;
+}
+
+.heading {
+  margin-top: 50px;
+}
+
+.heading h1 {
+  font-size: 3.5rem !important;
+}
+
+.para {
+  margin: auto;
+  width: 90%;
+}
+
+.para p {
+  font-size: 1.7rem;
+  line-height: normal !important;
+  color: grey;
+}
+
+.cardSection {
+  width: 80%;
+  margin: auto;
+}
+
+.cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cards i {
+  font-size: 1.5rem;
+  color: var(--primaryColor);
+}
+
+.cards .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.cards .card img {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 10px 50px;
+}
+
+.cards .card h3 {
+  background: var(--primaryColor);
+  color: white;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.cards .card h4 {
+  margin: 20px 0;
+  color: grey;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 20px 0;
+}
+
+.title h4 {
+  text-align: left !important;
+}
+
+.startBtn {
+  margin: 5vh;
+  text-decoration: none;
+}
+
+.startBtn Button {
+  background: var(--darkGreen);
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.startBtn Button i {
+  margin: 0 10px !important;
+}
+
+.startBtn .startButton {
+  text-decoration: none !important;
+}
+
+.noDecoration {
+  text-decoration: none !important;
+}
+/*# sourceMappingURL=Welcome.module.css.map */

@@ -78,12 +78,17 @@ const LoginSignup = () => {
               />
             </div>
             <div className={styles.loginBtn}>
-              <Link className={styles.forgot} to="/forgotPassword">
-                Forgot Password?
+              <h4 className={styles.forgot}>
+                <Link className={styles.noDecoration} to="/forgotPassword">
+                  Forgot Password?
+                </Link>
+              </h4>
+
+              <Link className={styles.noDecoration} to="/welcome">
+                <Button className={styles.btnPrimaryColor} variant="contained">
+                  Login
+                </Button>
               </Link>
-              <Button className={styles.btnPrimaryColor} variant="contained">
-                Login
-              </Button>
             </div>
           </form>
         </div>

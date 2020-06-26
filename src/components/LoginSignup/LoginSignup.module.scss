@@ -66,6 +66,7 @@ form {
 
 .container.rightPanelActive .signInContainer {
   transform: translateX(100%);
+  opacity: 0;
 }
 
 .container.rightPanelActive .signUpContainer {
@@ -177,11 +178,12 @@ form {
   width: 100%;
 
   .forgot {
-    text-decoration: none;
-    color: var(--primaryColor);
     font-size: small;
-    flex: 1;
     text-align: left;
+    flex: 1;
+  }
+  .noDecoration {
+    color: var(--primaryColor) !important;
   }
 }
 
@@ -215,4 +217,7 @@ form {
   background: white !important;
   color: var(--primaryColor);
   font-weight: 600 !important;
+}
+.noDecoration {
+  text-decoration: none !important;
 }
