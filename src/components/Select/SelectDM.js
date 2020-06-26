@@ -49,9 +49,9 @@ const SelectDM = () => {
                     setAIModel(e.target.value);
                   }}
                 >
-                  <MenuItem value="Disease 1">Disease 1</MenuItem>
-                  <MenuItem value="Disease 2">Disease 2</MenuItem>
-                  <MenuItem value="Disease 3">Disease 3</MenuItem>
+                  <MenuItem value="Disease 1">Related to Lungs</MenuItem>
+                  <MenuItem value="Disease 2">Related to Heart</MenuItem>
+                  <MenuItem value="Disease 3">Something else</MenuItem>
                 </Select>
               </FormControl>
               <FormControl className={styles.inputControl} variant="outlined">
@@ -65,9 +65,9 @@ const SelectDM = () => {
                     setDisease(e.target.value);
                   }}
                 >
-                  <MenuItem value="Model 1">Model 1</MenuItem>
-                  <MenuItem value="Model 2">Model 2</MenuItem>
-                  <MenuItem value="Model 3">Model 3</MenuItem>
+                  <MenuItem value="Model 1">CNN Model</MenuItem>
+                  {/* <MenuItem value="Model 2">Model 2</MenuItem>
+                  <MenuItem value="Model 3">Model 3</MenuItem> */}
                 </Select>
               </FormControl>
 
