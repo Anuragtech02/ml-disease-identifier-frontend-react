@@ -17,33 +17,30 @@ from keras.models import Sequential, Model
 from keras.callbacks import TensorBoard, ModelCheckpoint, \
     LearningRateScheduler, EarlyStopping, ReduceLROnPlateau
 from keras.optimizers import Adam
-from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 from flask import Flask, redirect, url_for, request, render_template, Response, jsonify, redirect
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
+from flask_cors import CORS
 import os
 import sys
-import time
 app = Flask(__name__)
 
+cors = CORS(app)
 
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
-
-
-label = ['Atelectasis', 'Cardiomegaly', 'Consolidation', 'COVID-19', 'Edema', 'Effusion', 'Emphysema',
+label = ['Atelectasis', 'COVID-19', 'Cardiomegaly', 'Consolidation', 'Edema', 'Effusion', 'Emphysema',
          'Fibrosis', 'Hernia', 'Infiltration', 'Mass', 'Nodule', 'Pleural_Thickening', 'Pneumonia', 'Pneumothorax']
 
 
-def top3(arr, lbl):
-    ls = []
-    t3 = np.argsort(arr)[-3:]
-    for i in t3:
-        ls.append(lbl[int(i)])
-    return ls
+def disease(arr, lbl):
+    f = []
+    k = [round(x, 2) for x in arr]
+    for i in range(len(arr)):
+        if k[i] > 0.60 and k[i] != 1:
+            f.append(lbl[i])
+    print(k)
+    return f
 
 
 def _create_attention_model(frozen_model, label):
@@ -136,16 +133,20 @@ def MakeResnetModel(IMG_SIZE,  channels=3):
     print(f'{model.summary()}')
     return model
 
-
-@app.route('/', methods=['GET'])
-def index():
-    # Main page
-    return render_template('index.html')
+# @app.route('/', methods=['GET'])
+# def index():
+#     # Main page
+#     return render_template('index.html')
 
 
 def MaxVoteEnsemble(predictionList):
     ensemble_preds = np.maximum(*predictionList)
     return ensemble_preds
+
+
+@app.route('/testAPI', methods=['GET'])
+def sayHello():
+    return 'Hello test successfull :)'
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -163,39 +164,46 @@ def predict():
         vgg_model = MakeVGGModel((224, 224), 3)
         vgg_model.load_weights('./weights.best.vgg.hdf5', reshape=True)
 
-        # resnet_model=MakeResnetModel((299,299),3)
-        # resnet_model.load_weights('/home/subham/Projects/Aaiway/docker-aaiway/subham_aaiway/weights.best.resnet.hdf5',reshape=True)
+        resnet_model = MakeResnetModel((299, 299), 3)
+        resnet_model.load_weights('./weights.best.resnet.hdf5', reshape=True)
 
-        # mobilenet_model=MakeMobileNetModel((224,224),3)
-        # mobilenet_model.load_weights('/home/subham/Projects/Aaiway/docker-aaiway/subham_aaiway/weights.best.mobilenet.hdf5',reshape=True)
+        mobilenet_model = MakeMobileNetModel((224, 224), 3)
+        mobilenet_model.load_weights(
+            './weights.best.mobilenet.hdf5', reshape=True)
         image_vgg = img_to_array(image_vgg)
         image_vgg = image_vgg.reshape(
             (1, image_vgg.shape[0], image_vgg.shape[1], image_vgg.shape[2]))
         image_vgg = preprocess_input(image_vgg)
 
-        #image_resnet = load_img(img, target_size=(299, 299,3))
-        #image_resnet = img_to_array(image_resnet)
-        #image_resnet = image_resnet.reshape(( 1,image_resnet.shape[0], image_resnet.shape[1], image_resnet.shape[2]))
-        #image_resnet = preprocess_input(image_resnet)
+        image_resnet = load_img(img, target_size=(299, 299, 3))
+        image_resnet = img_to_array(image_resnet)
+        image_resnet = image_resnet.reshape(
+            (1, image_resnet.shape[0], image_resnet.shape[1], image_resnet.shape[2]))
+        image_resnet = preprocess_input(image_resnet)
 
-        #image_mobilenet = load_img(img, target_size=(224, 224,3))
-        #image_mobilenet = img_to_array(image_mobilenet)
-        #image_mobilenet = image_mobilenet.reshape(( 1,image_mobilenet.shape[0], image_mobilenet.shape[1], image_mobilenet.shape[2]))
-        #image_mobilenet = preprocess_input(image_mobilenet)
+        image_mobilenet = load_img(img, target_size=(224, 224, 3))
+        image_mobilenet = img_to_array(image_mobilenet)
+        image_mobilenet = image_mobilenet.reshape(
+            (1, image_mobilenet.shape[0], image_mobilenet.shape[1], image_mobilenet.shape[2]))
+        image_mobilenet = preprocess_input(image_mobilenet)
         vgg_pred = vgg_model.predict(image_vgg)
-        #mobilenet_pred = mobilenet_model.predict(image_mobilenet)
-        #resnet_pred = resnet_model.predict(image_resnet)
-        #predictionList = [vgg_pred]
-        #max_vote_ensemble_preds = MaxVoteEnsemble(predictionList)
-        b = top3(vgg_pred[0], label)
-        x = ".".join(b)
-        return x
-    return None
+        mobilenet_pred = mobilenet_model.predict(image_mobilenet)
+        resnet_pred = resnet_model.predict(image_resnet)
+        predictionList = [vgg_pred, mobilenet_pred, resnet_pred]
+        max_vote_ensemble_preds = MaxVoteEnsemble(predictionList)
+        z = disease(max_vote_ensemble_preds[0], label)
+        if len(z) == 0:
+            return "No disease found"
+        print(z)
+        y = "Predicted Diseases are "
+        x = y+" , ".join(z)
+        return Response(x, headers={"Access-Control-Allow-Origin": "*"})
+    return Response(headers={"Access-Control-Allow-Origin": "*"})
 
 
 if __name__ == '__main__':
-    # app.run(port=5002, threaded=False)
+    # app.run(port=5000, threaded=False)
 
     # Serve the app with gevent
-    http_server = WSGIServer(('', 5000), app)
+    http_server = WSGIServer(('', 5000), cors)
     http_server.serve_forever()

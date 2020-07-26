@@ -1,5 +1,16 @@
-.conatiner {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 92vh;
+  width: var(--fixedWidth);
+  margin: auto;
+  p {
+    font-size: 1.5rem !important;
+    text-align: center;
+    font-weight: 600 !important;
+    margin: auto;
+    width: 60%;
+    line-height: 40px !important;
+  }
 }

@@ -75,6 +75,14 @@ form {
   z-index: 5;
   animation: show 0.6s;
 }
+.selectCategory {
+  width: 90%;
+  margin: 10px 0 !important;
+}
+.signupText {
+  height: 300px !important;
+  overflow-y: auto;
+}
 
 @keyframes show {
   0%,
@@ -168,7 +176,7 @@ form {
 }
 .inputFieldSignup {
   margin: 10px 0 !important;
-  width: 100%;
+  width: 90%;
 }
 
 .loginBtn {

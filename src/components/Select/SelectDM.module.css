@@ -26,6 +26,8 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
+  width: 400px !important;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -33,7 +35,6 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 50px;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -44,6 +45,8 @@
   font-weight: 800;
   color: var(--primaryColor);
   margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
 }
 
 form {
@@ -59,13 +62,24 @@ form {
   margin: 20px 0 !important;
 }
 
-.nextBtn .btnNext {
+.submitBtn {
+  width: 300px;
+}
+
+.submitBtn .btnSubmit {
   background: var(--primaryColor);
   color: white;
   font-weight: 600;
+  width: 100%;
+  margin: 10px 0;
 }
 
-.card {
+.nextButton i {
+  font-size: 2rem;
+  color: var(--primaryColor);
+}
+
+.outer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -73,15 +87,11 @@ form {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 400px;
+  padding: 10px 50px;
 }
 
-[type="file"] {
-  height: 0;
-  overflow: hidden;
-  width: 0;
-}
-
-.content2 {
+.card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -89,10 +99,30 @@ form {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  width: auto;
+}
+
+.content2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
   height: 100%;
-  padding: 50px;
   margin: auto;
+  padding-top: 20px;
+  margin-left: 100px;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -102,73 +132,52 @@ form {
 }
 
 .content2 img {
-  padding: 20px;
   height: 200px;
-  width: 150px;
-}
-
-[type="file"] + label {
-  background: #f15d22;
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Poppins", sans-serif;
-  font-size: inherit;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  outline: none;
-  padding: 1rem 50px;
-  position: relative;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  vertical-align: middle;
-}
-
-[type="file"] + label:hover {
-  background-color: #d3460d;
-}
-
-[type="file"] + label.btn3 {
-  background-color: #ee6d9e;
-  border-radius: 0;
-  overflow: hidden;
-}
-
-[type="file"] + label.btn3 span {
-  display: inline-block;
-  height: 100%;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  padding: 20px 0;
   width: 100%;
+  margin: auto;
 }
 
-[type="file"] + label.btn3::before {
-  color: #fff;
-  content: "\f574";
-  font-family: "Font Awesome 5 Free";
-  font-size: 130%;
-  height: 100%;
-  left: 0;
-  line-height: 2.6;
-  position: absolute;
-  top: -180%;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  width: 100%;
+.inputBtn {
+  border-radius: 20px !important;
 }
 
-[type="file"] + label.btn3:hover {
-  background-color: #ae144f;
+.rightActive {
+  -webkit-transform: translateX(-400px) !important;
+          transform: translateX(-400px) !important;
 }
 
-[type="file"] + label.btn3:hover span {
-  -webkit-transform: translateY(300%);
-          transform: translateY(300%);
+.imageContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
 }
 
-[type="file"] + label.btn3:hover::before {
-  top: 0;
+.backBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 20px 0;
+}
+
+.backBtn Button {
+  background: var(--primaryColor);
+}
+
+.result {
+  width: 80%;
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
 }
 /*# sourceMappingURL=SelectDM.module.css.map */

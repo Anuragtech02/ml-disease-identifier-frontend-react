@@ -1,4 +1,4 @@
-.conatiner {
+.container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8,5 +8,17 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  min-height: 92vh;
+  width: var(--fixedWidth);
+  margin: auto;
+}
+
+.container p {
+  font-size: 1.5rem !important;
+  text-align: center;
+  font-weight: 600 !important;
+  margin: auto;
+  width: 60%;
+  line-height: 40px !important;
 }
 /*# sourceMappingURL=About.module.css.map */

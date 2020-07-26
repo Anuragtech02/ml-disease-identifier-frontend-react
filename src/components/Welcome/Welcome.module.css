@@ -35,7 +35,8 @@
 .para p {
   font-size: 1.7rem;
   line-height: normal !important;
-  color: grey;
+  font-weight: 600;
+  color: var(--primaryColor);
 }
 
 .cardSection {

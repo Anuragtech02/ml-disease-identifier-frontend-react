@@ -5,24 +5,30 @@ import styles from "./Welcome.module.css";
 import aiRobot from "../../assets/ai-robot.svg";
 import covid from "../../assets/covid.svg";
 import thumbnail from "../../assets/picture-thumbnail.svg";
+import { motion } from "framer-motion";
 
 const Welcome = () => {
   return (
     <div className={styles.outerContainer}>
-      <div className={styles.container}>
-        <div class={styles.heading}>
-          <Typography variant="h1">
-            Hi Doctor! Welcome to the Application
-          </Typography>
+      <motion.div
+        className={styles.container}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className={styles.heading}>
+          <Typography variant="h1">Hi Dr. Prasad! Welcome to DIAL</Typography>
         </div>
         <div className={styles.para}>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.
+            Disease Identification and Labeling (DIAL) is an Artificial
+            Intelligence based application for image analysis and labeling to
+            assist the doctors in predicting diseases. <br></br> <br />
+            For example, lung Disease can be considered as the second most
+            common type of disease for men and women. Many people die of lung
+            disease such as lung cancer, Asthma, CPD (Chronic pulmonary disease)
+            etc. in every year. Early prediction and detection of lung cancer
+            can lessen the probability of deaths.
           </p>
         </div>
         <div className={styles.cardSection}>
@@ -62,7 +68,7 @@ const Welcome = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
