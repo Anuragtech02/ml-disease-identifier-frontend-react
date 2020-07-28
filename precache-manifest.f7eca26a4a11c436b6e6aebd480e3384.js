@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0c803db8e1066fd452cc60e65f0dcbbd",
+    "revision": "ea24352c007be1768f9e2444b1422103",
     "url": "/ml-disease-identifier-frontend-react/index.html"
   },
   {
-    "revision": "b0224466e6c1893cb9e4",
+    "revision": "f18a894601336497c794",
     "url": "/ml-disease-identifier-frontend-react/static/css/main.b95aa014.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ml-disease-identifier-frontend-react/static/js/2.d0388f26.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b0224466e6c1893cb9e4",
-    "url": "/ml-disease-identifier-frontend-react/static/js/main.7e68f585.chunk.js"
+    "revision": "f18a894601336497c794",
+    "url": "/ml-disease-identifier-frontend-react/static/js/main.e606b6a4.chunk.js"
   },
   {
     "revision": "d90512a4f26ae6e2024d",
