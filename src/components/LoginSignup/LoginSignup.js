@@ -12,7 +12,7 @@ import styles from "./LoginSignup.module.css";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import firebase from "../../Auth/firebase";
-import { AuthContext } from "../../Auth/Auth";
+import { AuthContext } from "../../Auth/Auth.js";
 
 const LoginSignup = ({ history }) => {
   const [mutableClass, setMutableClass] = useState(styles.nothing);
@@ -41,10 +41,10 @@ const LoginSignup = ({ history }) => {
         .then(async () => {
           const db = firebase.firestore();
           const ref = db.collection("users");
-          const id = ref.doc.id;
+          const id = await ref.doc().id;
           await ref.doc(id).set({
             id,
-            email: loginEmail,
+            email: signupEmail,
             name: name,
             category: category,
             verification: verification,
@@ -54,7 +54,9 @@ const LoginSignup = ({ history }) => {
           alert("User created succesfully :) ");
           history.push("/welcome");
         });
-    } catch (error) {}
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const loginSubmit = async (e) => {
@@ -67,9 +69,9 @@ const LoginSignup = ({ history }) => {
     }
   };
 
-  // const { userDetails } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
 
-  // if (userDetails) {
+  // if (currentUser) {
   //   history.push("/welcome");
   //   return <Redirect to="/welcome" />;
   // }

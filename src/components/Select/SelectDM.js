@@ -129,7 +129,7 @@ const SelectDM = () => {
                   <InputLabel id="select-disease">Disease</InputLabel>
                   <Select
                     className={styles.input}
-                    value={disease}
+                    value={aiModel}
                     label="Disease"
                     onChange={(e) => {
                       setAIModel(e.target.value);
@@ -146,7 +146,7 @@ const SelectDM = () => {
                     className={styles.input}
                     labelId="select-ai-model"
                     label="Ai Model"
-                    value={aiModel}
+                    value={disease}
                     onChange={(e) => {
                       setDisease(e.target.value);
                     }}
