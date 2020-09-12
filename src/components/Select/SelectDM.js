@@ -90,7 +90,7 @@ const SelectDM = () => {
       //   });
       await axios
         .post(
-          "https://cors-anywhere.herokuapp.com/https://ai-lungs.herokuapp.com/predict",
+          "https://cors-anywhere.herokuapp.com/https://mxnet-aaiway.herokuapp.com/predict",
           formData,
           {
             headers: { "content-type": "multipart/form-data" },

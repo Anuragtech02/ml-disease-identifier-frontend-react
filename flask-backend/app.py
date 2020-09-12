@@ -17,17 +17,15 @@ from keras.models import Sequential, Model
 from keras.callbacks import TensorBoard, ModelCheckpoint, \
     LearningRateScheduler, EarlyStopping, ReduceLROnPlateau
 from keras.optimizers import Adam
+from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 from flask import Flask, redirect, url_for, request, render_template, Response, jsonify, redirect
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
-from flask_cors import CORS
 import os
 import sys
 app = Flask(__name__)
-
-cors = CORS(app)
 
 label = ['Atelectasis', 'COVID-19', 'Cardiomegaly', 'Consolidation', 'Edema', 'Effusion', 'Emphysema',
          'Fibrosis', 'Hernia', 'Infiltration', 'Mass', 'Nodule', 'Pleural_Thickening', 'Pneumonia', 'Pneumothorax']
@@ -37,7 +35,7 @@ def disease(arr, lbl):
     f = []
     k = [round(x, 2) for x in arr]
     for i in range(len(arr)):
-        if k[i] > 0.60 and k[i] != 1:
+        if k[i] > 0.65 and k[i] < 0.93:
             f.append(lbl[i])
     print(k)
     return f
@@ -133,10 +131,11 @@ def MakeResnetModel(IMG_SIZE,  channels=3):
     print(f'{model.summary()}')
     return model
 
-# @app.route('/', methods=['GET'])
-# def index():
-#     # Main page
-#     return render_template('index.html')
+
+@app.route('/', methods=['GET'])
+def index():
+    # Main page
+    return render_template('predict.html')
 
 
 def MaxVoteEnsemble(predictionList):
@@ -144,9 +143,9 @@ def MaxVoteEnsemble(predictionList):
     return ensemble_preds
 
 
-@app.route('/testAPI', methods=['GET'])
-def sayHello():
-    return 'Hello test successfull :)'
+@app.route('/prediction', methods=['GET'])
+def prediction():
+    return render_template('predict.html')
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -164,9 +163,6 @@ def predict():
         vgg_model = MakeVGGModel((224, 224), 3)
         vgg_model.load_weights('./weights.best.vgg.hdf5', reshape=True)
 
-        resnet_model = MakeResnetModel((299, 299), 3)
-        resnet_model.load_weights('./weights.best.resnet.hdf5', reshape=True)
-
         mobilenet_model = MakeMobileNetModel((224, 224), 3)
         mobilenet_model.load_weights(
             './weights.best.mobilenet.hdf5', reshape=True)
@@ -175,12 +171,6 @@ def predict():
             (1, image_vgg.shape[0], image_vgg.shape[1], image_vgg.shape[2]))
         image_vgg = preprocess_input(image_vgg)
 
-        image_resnet = load_img(img, target_size=(299, 299, 3))
-        image_resnet = img_to_array(image_resnet)
-        image_resnet = image_resnet.reshape(
-            (1, image_resnet.shape[0], image_resnet.shape[1], image_resnet.shape[2]))
-        image_resnet = preprocess_input(image_resnet)
-
         image_mobilenet = load_img(img, target_size=(224, 224, 3))
         image_mobilenet = img_to_array(image_mobilenet)
         image_mobilenet = image_mobilenet.reshape(
@@ -188,8 +178,7 @@ def predict():
         image_mobilenet = preprocess_input(image_mobilenet)
         vgg_pred = vgg_model.predict(image_vgg)
         mobilenet_pred = mobilenet_model.predict(image_mobilenet)
-        resnet_pred = resnet_model.predict(image_resnet)
-        predictionList = [vgg_pred, mobilenet_pred, resnet_pred]
+        predictionList = [vgg_pred, mobilenet_pred]
         max_vote_ensemble_preds = MaxVoteEnsemble(predictionList)
         z = disease(max_vote_ensemble_preds[0], label)
         if len(z) == 0:
@@ -197,13 +186,13 @@ def predict():
         print(z)
         y = "Predicted Diseases are "
         x = y+" , ".join(z)
-        return Response(x, headers={"Access-Control-Allow-Origin": "*"})
-    return Response(headers={"Access-Control-Allow-Origin": "*"})
+        return x
+    return None
 
 
 if __name__ == '__main__':
-    # app.run(port=5000, threaded=False)
+    # app.run(debug=True)
 
     # Serve the app with gevent
-    http_server = WSGIServer(('', 5000), cors)
+    http_server = WSGIServer(('', 5000), app)
     http_server.serve_forever()

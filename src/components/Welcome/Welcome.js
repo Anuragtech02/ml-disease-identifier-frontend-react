@@ -17,7 +17,7 @@ const Welcome = () => {
         transition={{ duration: 0.5 }}
       >
         <div className={styles.heading}>
-          <Typography variant="h1">Hi Dr. Prasad! Welcome to DIAL</Typography>
+          <Typography variant="h1">Hey there, Welcome to DIAL</Typography>
         </div>
         <div className={styles.para}>
           <p>

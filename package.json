@@ -2,7 +2,6 @@
   "name": "ml-disease-detection",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anuragtech02.github.io/ml-disease-identifier-frontend-react/",
   "dependencies": {
     "@material-ui/core": "^4.10.2",
     "@material-ui/icons": "^4.9.1",
@@ -20,7 +19,6 @@
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.4.1"
   },
-  "proxy": "http://localhost:6000/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -45,5 +43,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://ai-lungs.herokuapp.com/"
 }

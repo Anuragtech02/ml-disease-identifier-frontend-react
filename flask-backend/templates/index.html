@@ -1,31 +1,48 @@
 {% extends "base.html" %} {% block content %}
 
-<h2>Lungs Disease Detection and Prediction</h2>
-
-<div>
-    <form id="upload-file" method="post" enctype="multipart/form-data">
-        <label for="imageUpload" class="upload-label">
-            Choose...
-        </label>
-        <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+<div class="container-card">
+  <div class="card">
+    <h4>Login</h4>
+    <form onsubmit="formSubmit(event)">
+      <label for="username">Username</label>
+      <input
+        required="true"
+        id="username"
+        name="username"
+        placeholder="example@email.com"
+        type="email"
+        class="username-input"
+      />
+      <label for="password">Password</label>
+      <input
+        required="true"
+        id="password"
+        name="password"
+        placeholder="********"
+        type="password"
+        class="password-input"
+      />
+      <button type="submit">Login</button>
     </form>
-
-    <div class="image-section" style="display:none;">
-        <div class="img-preview">
-            <div id="imagePreview">
-            </div>
-        </div>
-        <div>
-            <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
-        </div>
-    </div>
-
-    <div class="loader" style="display:none;"></div>
-
-    <h3 id="result">
-        <span> </span>
-    </h3>
-
+  </div>
+  <script>
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const formSubmit = (e) => {
+      e.preventDefault();
+      if (
+        username.value === "admin@aaiway.com" &&
+        password.value === "password"
+      ) {
+        const element = document.createElement("a");
+        element.href = "/prediction";
+        setTimeout(() => {
+          element.click();
+          alert("Succesfully Logged In :)");
+        }, 500);
+      }
+    };
+  </script>
 </div>
 
 {% endblock %}

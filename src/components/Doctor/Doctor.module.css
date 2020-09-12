@@ -2,9 +2,15 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-top: 5%;
+  width: var(--fixedWidth);
+  margin: auto;
 }
 
 .sidebar {
@@ -18,12 +24,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: fixed;
-  left: 0;
-  min-height: 100vh;
   min-width: 250px;
   z-index: 0;
-  border-radius: 0 !important;
 }
 
 .sidebar .profile {
@@ -38,17 +40,32 @@
   margin-top: 50px;
 }
 
-.sidebar .details h1 {
+.sidebar .details h1,
+.sidebar .details h2 {
   font-size: 1.2rem;
   font-weight: 300;
   margin: 10px 0;
 }
 
+.sidebar .details h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
 .dashboard {
   padding: 20px;
-  margin-top: 100px;
   min-height: 30vh;
-  width: 100vh;
+}
+
+.dashboard .stats {
+  margin: 10px 0;
+}
+
+.dashboard .stats .stat {
+  width: 100%;
+  min-height: 10vh;
+  background: rgba(255, 192, 203, 0.486);
+  border-radius: 5px;
 }
 
 .tableContainer {
