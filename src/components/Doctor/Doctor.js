@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Doctor.module.css";
 import {
   Paper,
@@ -11,12 +11,25 @@ import {
   TableRow,
   TableContainer,
   TableHead,
+  IconButton,
+  TextField,
 } from "@material-ui/core";
+import ChatIcon from "@material-ui/icons/Chat";
+import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
+import { AddCircleRounded } from "@material-ui/icons";
+import SearchIcon from "@material-ui/icons/Search";
+import patient1 from "../../assets/Patients/patient1.jpg";
+import patient2 from "../../assets/Patients/patient2.jpg";
+import patient3 from "../../assets/Patients/patient3.jpg";
 
 const Doctor = () => {
   const createData = (name, regDate, xStatus, predictedDisease, lab) => {
     return { name, regDate, xStatus, predictedDisease, lab };
   };
+
+  const [patientSearch, setPatientSearch] = useState("");
 
   const tempData = [
     createData("Patient ABC", "May 1 2020", "Not done", "NIL", "No Lab"),
@@ -51,28 +64,103 @@ const Doctor = () => {
     },
   ];
 
+  const patients = [
+    {
+      name: "Sample Patient",
+      disease: "Covid",
+      image: patient1,
+    },
+    {
+      name: "Random Patient",
+      disease: "Disease",
+      image: patient2,
+    },
+    {
+      name: "Simple Patient",
+      disease: "Problem",
+      image: patient3,
+    },
+    {
+      name: "Sample Patient",
+      disease: "Covid",
+      image: patient1,
+    },
+    {
+      name: "Random Patient",
+      disease: "Disease",
+      image: patient2,
+    },
+    {
+      name: "Simple Patient",
+      disease: "Problem",
+      image: patient3,
+    },
+  ];
+
   return (
     <div className={styles.container}>
-      <Grid spacing={4} container>
+      <Grid spacing={0} container>
         <Grid item xs={12} s={4} md={3} lg={3} xl={3}>
-          <Paper className={styles.sidebar}>
-            <div className={styles.profile}></div>
-            <div className={styles.details}>
-              <div className={styles.name}>
-                <h1>Doctor Name</h1>
-                <h2>Covid Specialist</h2>
+          <div className={styles.sidebar}>
+            <Paper className={styles.controlContainer}>
+              <div className={styles.control}>
+                <IconButton className={styles.icon}>
+                  <CreateNewFolderIcon fontSize="default" />
+                </IconButton>
+                <IconButton className={styles.icon}>
+                  <PermContactCalendarIcon fontSize="default" />
+                </IconButton>
+                <IconButton className={styles.icon}>
+                  <ChatIcon fontSize="default" />
+                </IconButton>
+                <IconButton className={styles.icon}>
+                  <NotificationsIcon fontSize="default" />
+                </IconButton>
               </div>
-              <div className={styles.about}>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Placeat mollitia molestias expedita nobis, beatae nulla
-                  voluptate impedit nisi corporis et, dolorem aliquid.
-                  Accusantium excepturi similique, provident alias itaque
-                  facilis unde.
-                </p>
+            </Paper>
+            <Paper className={styles.actionPanel}>
+              <div className={styles.addNew}>
+                <h3>Add New</h3>
+                <IconButton className={styles.icon}>
+                  <AddCircleRounded />
+                </IconButton>
               </div>
-            </div>
-          </Paper>
+              <div className={styles.heading}>
+                <h2>Patients</h2>
+              </div>
+              <div className={styles.search}>
+                <SearchIcon />
+                <input
+                  value={patientSearch}
+                  onChange={(e) => setPatientSearch(e.target.value)}
+                  type="text"
+                  placeholder="Search"
+                />
+              </div>
+              <div className={styles.patientList}>
+                {patients.map((patient) => {
+                  return (
+                    <div key={patient.name} className={styles.patientContainer}>
+                      <div
+                        className={styles.profile}
+                        style={{ backgroundImage: `url(${patient.image})` }}
+                      ></div>
+                      <div className={styles.nameDisease}>
+                        <div className={styles.name}>
+                          <strong>
+                            <p>{patient.name}</p>
+                          </strong>
+                        </div>
+                        <div className={styles.disease}>
+                          <p>{patient.disease}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Paper>
+          </div>
         </Grid>
         <Grid item xs={12} s={9} md={9} lg={9} xl={9}>
           <Paper className={styles.dashboard}>

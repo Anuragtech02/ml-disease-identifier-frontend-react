@@ -17,26 +17,225 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-width: 250px;
+  z-index: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.sidebar .controlContainer {
+  height: 90% !important;
+  padding: 10px;
+  border-radius: 2px 0 0 2px !important;
+  background: #ffd6c3;
+}
+
+.sidebar .controlContainer .control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  min-width: 250px;
-  z-index: 0;
-  overflow: hidden;
+  height: 100%;
 }
 
-.sidebar .profile {
+.sidebar .controlContainer .control .icon {
+  margin: 15px 0;
+}
+
+.sidebar .controlContainer .control .icon svg {
+  fill: black !important;
+}
+
+.sidebar .actionPanel {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 80%;
+  padding: 20px 30px;
+  border-radius: 5px 0 0 5px !important;
+  background: #ffd6c3;
+}
+
+.sidebar .actionPanel .addNew {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
-  height: 250px;
-  background: grey;
-  background-image: url(https://images.pexels.com/photos/3714743/pexels-photo-3714743.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
-  background-size: cover;
-  background-repeat: no-repeat;
+}
+
+.sidebar .actionPanel .addNew h3 {
+  color: var(--primaryColor);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.sidebar .actionPanel .addNew .icon svg {
+  fill: var(--primaryColor) !important;
+}
+
+.sidebar .actionPanel .heading {
+  padding: 5px 0;
+  margin: 5px 0;
+}
+
+.sidebar .actionPanel .heading h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.sidebar .actionPanel .search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.sidebar .actionPanel .search svg {
+  fill: rgba(0, 0, 0, 0.5) !important;
+}
+
+.sidebar .actionPanel .search input {
+  padding: 2px 10px;
+  border: none;
+  outline: none;
+  background: transparent !important;
+  background: rgba(0, 0, 0, 0);
+}
+
+.sidebar .actionPanel .search input::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar .actionPanel .search input:-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar .actionPanel .search input::-ms-input-placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar .actionPanel .search input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.sidebar .actionPanel .patientList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.sidebar .actionPanel .patientList .patientContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+
+.sidebar .actionPanel .patientList .patientContainer .profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 2px solid white;
+}
+
+.sidebar .actionPanel .patientList .patientContainer .nameDisease {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-left: 15px;
+}
+
+.sidebar .actionPanel .patientList .patientContainer .nameDisease .name p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.sidebar .actionPanel .patientList .patientContainer .nameDisease .disease p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  margin: 5px 0;
+}
+
+.sidebar .actionPanel .patientList .patientContainer:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 5px;
 }
 
 .sidebar .details {
@@ -67,6 +266,7 @@
 .dashboard {
   padding: 20px;
   min-height: 30vh;
+  border-radius: 0 5px 5px 0 !important;
 }
 
 .dashboard .heading h1,
