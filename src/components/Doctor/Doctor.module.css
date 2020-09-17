@@ -252,7 +252,7 @@
 
 .sidebar .actionPanel .patientList .patientContainer:hover {
   background: rgba(0, 0, 0, 0.04);
-  border-radius: 5px;
+  border-radius: 50px 10px 10px 50px;
 }
 
 .sidebar .details {
