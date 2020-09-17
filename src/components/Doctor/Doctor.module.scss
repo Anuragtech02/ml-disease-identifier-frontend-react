@@ -18,12 +18,13 @@
   z-index: 0;
   overflow: hidden;
   height: 100%;
+  padding: 1px 0;
 
   .controlContainer {
     height: 90% !important;
     padding: 10px;
     border-radius: 2px 0 0 2px !important;
-    background: #ffd6c3;
+    background: #004a830c;
     .control {
       display: flex;
       flex-direction: column;
@@ -35,6 +36,12 @@
         margin: 15px 0;
         svg {
           fill: black !important;
+        }
+        &:nth-child(2) {
+          background: white;
+          svg {
+            fill: var(--primaryColor) !important;
+          }
         }
       }
     }
@@ -48,7 +55,7 @@
     width: 80%;
     padding: 20px 30px;
     border-radius: 5px 0 0 5px !important;
-    background: #ffd6c3;
+    background: #004a830c;
 
     .addNew {
       display: flex;
@@ -106,6 +113,12 @@
       align-items: center;
       width: 100%;
       margin-top: 10px;
+      .selected {
+        background: var(--primaryColor) !important;
+        border-radius: 50px 10px 10px 50px !important;
+        box-shadow: 2px 2px 15px -1px rgba(0, 0, 0, 0.1) !important;
+        color: white;
+      }
       .patientContainer {
         display: flex;
         justify-content: flex-start;

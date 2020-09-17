@@ -13,6 +13,7 @@ import {
   TableHead,
   IconButton,
   TextField,
+  Tooltip,
 } from "@material-ui/core";
 import ChatIcon from "@material-ui/icons/Chat";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
@@ -23,6 +24,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import patient1 from "../../assets/Patients/patient1.jpg";
 import patient2 from "../../assets/Patients/patient2.jpg";
 import patient3 from "../../assets/Patients/patient3.jpg";
+import classNames from "classnames";
 
 const Doctor = () => {
   const createData = (name, regDate, xStatus, predictedDisease, lab) => {
@@ -104,18 +106,26 @@ const Doctor = () => {
           <div className={styles.sidebar}>
             <Paper className={styles.controlContainer}>
               <div className={styles.control}>
-                <IconButton className={styles.icon}>
-                  <CreateNewFolderIcon fontSize="default" />
-                </IconButton>
-                <IconButton className={styles.icon}>
-                  <PermContactCalendarIcon fontSize="default" />
-                </IconButton>
-                <IconButton className={styles.icon}>
-                  <ChatIcon fontSize="default" />
-                </IconButton>
-                <IconButton className={styles.icon}>
-                  <NotificationsIcon fontSize="default" />
-                </IconButton>
+                <Tooltip placement="top" title="Add new patient">
+                  <IconButton className={styles.icon}>
+                    <CreateNewFolderIcon fontSize="default" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip placement="top" title="Patients">
+                  <IconButton className={styles.icon}>
+                    <PermContactCalendarIcon fontSize="default" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip placement="top" title="Chats">
+                  <IconButton className={styles.icon}>
+                    <ChatIcon fontSize="default" />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip placement="top" title="Notifications">
+                  <IconButton className={styles.icon}>
+                    <NotificationsIcon fontSize="default" />
+                  </IconButton>
+                </Tooltip>
               </div>
             </Paper>
             <Paper className={styles.actionPanel}>
@@ -138,9 +148,15 @@ const Doctor = () => {
                 />
               </div>
               <div className={styles.patientList}>
-                {patients.map((patient) => {
+                {patients.map((patient, index) => {
                   return (
-                    <div key={patient.name} className={styles.patientContainer}>
+                    <div
+                      key={patient.name}
+                      className={classNames(
+                        styles.patientContainer,
+                        index === 1 ? styles.selected : null
+                      )}
+                    >
                       <div
                         className={styles.profile}
                         style={{ backgroundImage: `url(${patient.image})` }}
