@@ -142,7 +142,9 @@ const Doctor = () => {
             </Paper>
           </div>
         </Grid>
-        <Grid item xs={12} s={9} md={9} lg={9} xl={9}></Grid>
+        <Grid item xs={12} s={9} md={9} lg={9} xl={9}>
+          <PatientDetails />
+        </Grid>
       </Grid>
     </div>
   );
@@ -151,6 +153,8 @@ const Doctor = () => {
 export default Doctor;
 
 const PatientDetails = () => {
+  const date = new Date();
+
   const data = {
     name: "Random Patient",
     disease: "Disease",
@@ -163,9 +167,15 @@ const PatientDetails = () => {
     diagnosis: [
       {
         name: "Referred Lab",
-        date: `${new Date().getMonth} ${new Date().getDate}, ${
-          new Date().getFullYear
-        }`,
+        date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+      },
+      {
+        name: "Referred Lab",
+        date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+      },
+      {
+        name: "Referred Lab",
+        date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
       },
     ],
   };
@@ -174,24 +184,36 @@ const PatientDetails = () => {
     <Paper className={styles.patientDetails}>
       <div className={styles.header}>
         <div className={styles.name}>
-          <Avatar src={patient2}>
+          <Avatar
+            style={{ width: "80px", height: "80px" }}
+            className={styles.avatar}
+            src={patient2}
+          >
             {data.name.slice(2, data.name.length - 1)}
           </Avatar>
-          <h4>{data.name}</h4>
-          <p>{data.disease}</p>
+          <div className={styles.intro}>
+            <h4>{data.name}</h4>
+            <p>{data.disease}</p>
+          </div>
         </div>
         <div className={styles.chat}>
-          <Tooltip>
+          <Tooltip placement="top" title="Chat">
             <IconButton>
               <ChatIcon />
             </IconButton>
           </Tooltip>
         </div>
       </div>
+      <div className={styles.diagnosisHeading}>
+        <h3>Latest Diagnosis</h3>
+      </div>
       <div className={styles.latest}>
-        {data.diagnosis.map((item) => {
+        {data.diagnosis.map((item, i) => {
           return (
-            <div>
+            <div
+              style={{ marginLeft: i ? "20px" : "0" }}
+              className={styles.latestDiagnosis}
+            >
               <h4>{item.name}</h4>
               <p>{item.date}</p>
             </div>

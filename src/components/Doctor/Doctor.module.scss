@@ -241,3 +241,67 @@
     }
   }
 }
+
+.patientDetails {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  p {
+    padding: 0;
+    margin: 0;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .name {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin: 0 10px;
+        p {
+          margin: 5px 0;
+          padding: 0;
+        }
+      }
+    }
+    .chat {
+      background: var(--primaryColor) !important;
+      border-radius: 50%;
+      svg {
+        fill: white !important;
+      }
+    }
+  }
+  .diagnosisHeading {
+    margin-top: 30px;
+    h3 {
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+  }
+
+  .latest {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+
+    .latestDiagnosis {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 20px 20px 20px 10px;
+      border-radius: 5px;
+    }
+  }
+}
