@@ -332,6 +332,12 @@
   font-weight: 600 !important;
 }
 
+.divider {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+}
+
 .patientDetails {
   padding: 50px;
   display: -webkit-box;
@@ -402,6 +408,18 @@
   padding: 0;
 }
 
+.patientDetails .header .iconContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .patientDetails .header .chat {
   background: var(--primaryColor) !important;
   border-radius: 50%;
@@ -411,17 +429,22 @@
   fill: white !important;
 }
 
+.patientDetails .header .chat:nth-child(1) {
+  margin-right: 20px;
+}
+
 .patientDetails .diagnosisHeading {
   margin-top: 30px;
 }
 
 .patientDetails .diagnosisHeading h3 {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .patientDetails .latest {
-  margin: 10px 0;
+  margin: 5px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -435,8 +458,51 @@
 }
 
 .patientDetails .latest .latestDiagnosis {
-  background: rgba(0, 0, 0, 0.1);
+  background: #004a8318;
   padding: 20px 20px 20px 10px;
   border-radius: 5px;
+  color: var(--primaryColor);
+}
+
+.patientDetails .latest .latestDiagnosis p {
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+.patientDetails .infoHeading {
+  margin-top: 30px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.patientDetails .info {
+  width: 100%;
+}
+
+.patientDetails .info ul {
+  width: 100%;
+  list-style: none !important;
+}
+
+.patientDetails .info ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 10px 0;
+}
+
+.patientDetails .info ul li span {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 700;
 }
 /*# sourceMappingURL=Doctor.module.css.map */

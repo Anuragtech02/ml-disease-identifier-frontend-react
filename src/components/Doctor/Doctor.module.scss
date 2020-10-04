@@ -241,7 +241,11 @@
     }
   }
 }
-
+.divider {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+}
 .patientDetails {
   padding: 50px;
   display: flex;
@@ -275,33 +279,74 @@
         }
       }
     }
+    .iconContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .chat {
       background: var(--primaryColor) !important;
       border-radius: 50%;
       svg {
         fill: white !important;
       }
+      &:nth-child(1) {
+        margin-right: 20px;
+      }
     }
   }
   .diagnosisHeading {
     margin-top: 30px;
     h3 {
-      font-weight: 600;
+      font-weight: 700;
       font-size: 1.2rem;
+      color: rgba(0, 0, 0, 0.7);
     }
   }
 
   .latest {
-    margin: 10px 0;
+    margin: 5px 0;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
 
     .latestDiagnosis {
-      background: rgba(0, 0, 0, 0.1);
+      background: #004a8318;
       padding: 20px 20px 20px 10px;
       border-radius: 5px;
+      color: var(--primaryColor);
+      p {
+        font-size: 0.8rem;
+        font-weight: 600;
+        opacity: 0.6;
+      }
+    }
+  }
+
+  .infoHeading {
+    margin-top: 30px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .info {
+    width: 100%;
+    ul {
+      width: 100%;
+      list-style: none !important;
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        color: rgba(0, 0, 0, 0.6);
+        font-weight: 600;
+        font-size: 0.9rem;
+        span {
+          color: rgba(0, 0, 0, 0.7);
+          font-weight: 700;
+        }
+        margin: 10px 0;
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Doctor.module.css";
 import {
   Paper,
@@ -15,19 +15,23 @@ import {
   TextField,
   Tooltip,
   Avatar,
+  Divider,
 } from "@material-ui/core";
+import { useParams, withRouter } from "react-router-dom";
 import ChatIcon from "@material-ui/icons/Chat";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
 import { AddCircleRounded } from "@material-ui/icons";
+import AssessmentIcon from "@material-ui/icons/Assessment";
 import SearchIcon from "@material-ui/icons/Search";
 import patient1 from "../../assets/Patients/patient1.jpg";
 import patient2 from "../../assets/Patients/patient2.jpg";
 import patient3 from "../../assets/Patients/patient3.jpg";
 import classNames from "classnames";
+import { SelectDM } from "../../components";
 
-const Doctor = () => {
+const Doctor = ({ history }) => {
   const [patientSearch, setPatientSearch] = useState("");
 
   const patients = [
@@ -35,33 +39,43 @@ const Doctor = () => {
       name: "Sample Patient",
       disease: "Covid",
       image: patient1,
+      id: "ABC123",
     },
     {
       name: "Random Patient",
       disease: "Disease",
       image: patient2,
+      id: "ABC456",
     },
     {
       name: "Simple Patient",
       disease: "Problem",
       image: patient3,
+      id: "ABC789",
     },
     {
       name: "Sample Patient",
       disease: "Covid",
       image: patient1,
+      id: "BCD123",
     },
     {
       name: "Random Patient",
       disease: "Disease",
       image: patient2,
+      id: "BCD456",
     },
     {
       name: "Simple Patient",
       disease: "Problem",
       image: patient3,
+      id: "BCD789",
     },
   ];
+
+  const { patientId } = useParams();
+
+  console.log(patientId);
 
   return (
     <div className={styles.container}>
@@ -115,10 +129,13 @@ const Doctor = () => {
                 {patients.map((patient, index) => {
                   return (
                     <div
-                      key={patient.name}
+                      key={index}
+                      onClick={() =>
+                        history.push(`/doctor/patients/${patient.id}`)
+                      }
                       className={classNames(
                         styles.patientContainer,
-                        index === 1 ? styles.selected : null
+                        patientId === patient.id ? styles.selected : null
                       )}
                     >
                       <div
@@ -143,16 +160,24 @@ const Doctor = () => {
           </div>
         </Grid>
         <Grid item xs={12} s={9} md={9} lg={9} xl={9}>
-          <PatientDetails />
+          <PatientDetails history={history} patientId={patientId} />
         </Grid>
       </Grid>
     </div>
   );
 };
 
-export default Doctor;
+export default withRouter(Doctor);
 
-const PatientDetails = () => {
+const ComponentToRender = ({ component: Component, props }) => {
+  return (
+    <div style={{ height: "100%", width: "100%" }}>
+      <Component {...props} />
+    </div>
+  );
+};
+
+const PatientDetails = ({ history, patientId }) => {
   const date = new Date();
 
   const data = {
@@ -180,6 +205,36 @@ const PatientDetails = () => {
     ],
   };
 
+  const [component, setComponent] = useState({
+    component: PatientData,
+    props: { data: data },
+  });
+
+  useEffect(() => {
+    switch (history.location.pathname) {
+      case `/doctor/patients/${patientId}`:
+        setComponent({
+          component: PatientData,
+          props: { data },
+        });
+        break;
+      case `/doctor/patients/${patientId}/select`:
+        setComponent({
+          component: SelectDM,
+          props: null,
+        });
+        console.log("Selected");
+        break;
+      default:
+        setComponent({
+          component: PatientData,
+          props: { data },
+        });
+        // setComponent(PatientData);
+        break;
+    }
+  }, [history, patientId]);
+
   return (
     <Paper className={styles.patientDetails}>
       <div className={styles.header}>
@@ -196,39 +251,32 @@ const PatientDetails = () => {
             <p>{data.disease}</p>
           </div>
         </div>
-        <div className={styles.chat}>
-          <Tooltip placement="top" title="Chat">
-            <IconButton>
-              <ChatIcon />
-            </IconButton>
-          </Tooltip>
+        <div className={styles.iconContainer}>
+          <div className={styles.chat}>
+            <Tooltip placement="top" title="Chat">
+              <IconButton>
+                <ChatIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
+          <div className={classNames(styles.chat)}>
+            <Tooltip placement="top" title="Assessment">
+              <IconButton
+                onClick={() => {
+                  history.push("/select");
+                }}
+              >
+                <AssessmentIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
         </div>
       </div>
-      <div className={styles.diagnosisHeading}>
-        <h3>Latest Diagnosis</h3>
-      </div>
-      <div className={styles.latest}>
-        {data.diagnosis.map((item, i) => {
-          return (
-            <div
-              style={{ marginLeft: i ? "20px" : "0" }}
-              className={styles.latestDiagnosis}
-            >
-              <h4>{item.name}</h4>
-              <p>{item.date}</p>
-            </div>
-          );
-        })}
-      </div>
-      <h3>Information</h3>
-      <div className={styles.info}>
-        <ul>
-          <li>{data.info.age}</li>
-          <li>{data.info.gender}</li>
-          <li>{data.info.contact}</li>
-          <li>{data.info.address}</li>
-        </ul>
-      </div>
+      <ComponentToRender
+        component={component.component}
+        props={component.props}
+      />
+      {/* <PatientData data={data} /> */}
     </Paper>
   );
 };
@@ -318,5 +366,59 @@ const Dashboard = () => {
         </TableContainer>
       </div>
     </Paper>
+  );
+};
+
+const PatientData = ({ data }) => {
+  return (
+    <>
+      <div className={styles.diagnosisHeading}>
+        <h3>Latest Diagnosis</h3>
+      </div>
+      <div className={styles.divider}></div>
+
+      <div className={styles.latest}>
+        {data.diagnosis.map((item, i) => {
+          return (
+            <div
+              key={i}
+              style={{ marginLeft: i ? "20px" : "0" }}
+              className={styles.latestDiagnosis}
+            >
+              <h4>{item.name}</h4>
+              <p>{item.date}</p>
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.infoHeading}>
+        <h3>Information</h3>
+      </div>
+      <div className={styles.divider}></div>
+
+      <div className={styles.info}>
+        <ul>
+          <li>
+            Age <span>{data.info.age}</span>
+          </li>
+          <div className={styles.divider}></div>
+
+          <li>
+            Gender <span>{data.info.gender}</span>
+          </li>
+          <div className={styles.divider}></div>
+
+          <li>
+            Contact <span>{data.info.contact}</span>
+          </li>
+          <div className={styles.divider}></div>
+
+          <li>
+            Address <span>{data.info.address}</span>
+          </li>
+          <div className={styles.divider}></div>
+        </ul>
+      </div>
+    </>
   );
 };

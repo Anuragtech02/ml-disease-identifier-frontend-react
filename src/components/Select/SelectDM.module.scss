@@ -1,12 +1,13 @@
 .outerContainer {
   display: flex;
-  background-image: url(../../assets/doctor-stethescope.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  height: 100%;
+  // background-image: url(../../assets/doctor-stethescope.jpg);
+  // background-size: cover;
+  // background-repeat: no-repeat;
 }
 
 .container {
-  min-height: 92vh;
+  height: 100%;
   width: var(--fixedWidth);
   display: flex;
   justify-content: flex-start;
