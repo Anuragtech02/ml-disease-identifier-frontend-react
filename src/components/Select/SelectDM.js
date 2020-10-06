@@ -89,19 +89,27 @@ const SelectDM = () => {
       //     }, 3000);
       //   });
       await axios
-        .post(
-          "https://cors-anywhere.herokuapp.com/https://mxnet-aaiway.herokuapp.com/predict",
-          formData,
-          {
-            headers: { "content-type": "multipart/form-data" },
-            method: "POST",
-          }
-        )
+        .post("https://mxnet-aaiway.herokuapp.com/predict", formData, {
+          headers: { "content-type": "multipart/form-data" },
+          method: "POST",
+        })
         .then((res) => {
           console.log(res);
+          let tempName = "";
           setTimeout(() => {
-            setResult(res.data);
+            res.data.heatmaps.forEach(
+              (heatmap) => (tempName = tempName + heatmap.name + " found, ")
+            );
+            !res.data.heatmaps.length
+              ? setResult("No disease found!")
+              : setResult(tempName);
             setLoading(false);
+            setImageUrl(
+              res.data.heatmaps[0].image.slice(
+                2,
+                res.data.heatmaps[0].image.length - 1
+              )
+            );
             setAlpha(1);
             setIsError(false);
           }, 3000);

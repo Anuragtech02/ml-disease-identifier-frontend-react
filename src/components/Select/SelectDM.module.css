@@ -131,6 +131,7 @@ form {
 .content2 img {
   max-height: 200px;
   width: auto;
+  max-width: 100%;
   margin: auto;
   border-radius: 5px;
 }
