@@ -17,7 +17,8 @@ import {
   Avatar,
   Divider,
 } from "@material-ui/core";
-import { useParams, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { useParams } from "react-router";
 import ChatIcon from "@material-ui/icons/Chat";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 import NotificationsIcon from "@material-ui/icons/Notifications";
@@ -34,53 +35,175 @@ import { SelectDM } from "../../components";
 const Doctor = ({ history }) => {
   const [patientSearch, setPatientSearch] = useState("");
 
+  const date = new Date();
+
   const patients = [
     {
       name: "Sample Patient",
       disease: "Covid",
       image: patient1,
       id: "ABC123",
+      info: {
+        age: 27,
+        gender: "Female",
+        address: "Indore, Madhya Pradesh",
+        contact: 9876543210,
+      },
+      diagnosis: [
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+      ],
     },
     {
       name: "Random Patient",
       disease: "Disease",
       image: patient2,
       id: "ABC456",
+      info: {
+        age: 27,
+        gender: "Female",
+        address: "Indore, Madhya Pradesh",
+        contact: 9876543210,
+      },
+      diagnosis: [
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+      ],
     },
     {
       name: "Simple Patient",
       disease: "Problem",
       image: patient3,
       id: "ABC789",
+      info: {
+        age: 27,
+        gender: "Female",
+        address: "Indore, Madhya Pradesh",
+        contact: 9876543210,
+      },
+      diagnosis: [
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+      ],
     },
     {
       name: "Sample Patient",
       disease: "Covid",
       image: patient1,
       id: "BCD123",
+      info: {
+        age: 27,
+        gender: "Female",
+        address: "Indore, Madhya Pradesh",
+        contact: 9876543210,
+      },
+      diagnosis: [
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+      ],
     },
     {
       name: "Random Patient",
       disease: "Disease",
       image: patient2,
       id: "BCD456",
+      info: {
+        age: 27,
+        gender: "Female",
+        address: "Indore, Madhya Pradesh",
+        contact: 9876543210,
+      },
+      diagnosis: [
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+      ],
     },
     {
       name: "Simple Patient",
       disease: "Problem",
       image: patient3,
       id: "BCD789",
+      info: {
+        age: 27,
+        gender: "Female",
+        address: "Indore, Madhya Pradesh",
+        contact: 9876543210,
+      },
+      diagnosis: [
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+        {
+          name: "Referred Lab",
+          date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
+        },
+      ],
     },
   ];
 
   const { patientId } = useParams();
 
-  console.log(patientId);
+  const dataById = patients.filter((patient) => patient.id === patientId);
 
   return (
     <div className={styles.container}>
       <Grid spacing={0} container>
-        <Grid item xs={12} s={4} md={3} lg={3} xl={3}>
+        <Grid item xs={12} s={6} md={4} lg={4} xl={3}>
           <div className={styles.sidebar}>
             <Paper className={styles.controlContainer}>
               <div className={styles.control}>
@@ -159,8 +282,12 @@ const Doctor = ({ history }) => {
             </Paper>
           </div>
         </Grid>
-        <Grid item xs={12} s={9} md={9} lg={9} xl={9}>
-          <PatientDetails history={history} patientId={patientId} />
+        <Grid item xs={12} s={6} md={8} lg={8} xl={9}>
+          <PatientDetails
+            history={history}
+            patientId={patientId}
+            data={dataById[0]}
+          />
         </Grid>
       </Grid>
     </div>
@@ -177,37 +304,10 @@ const ComponentToRender = ({ component: Component, props }) => {
   );
 };
 
-const PatientDetails = ({ history, patientId }) => {
-  const date = new Date();
-
-  const data = {
-    name: "Random Patient",
-    disease: "Disease",
-    info: {
-      age: 27,
-      gender: "Female",
-      address: "Indore, Madhya Pradesh",
-      contact: 9876543210,
-    },
-    diagnosis: [
-      {
-        name: "Referred Lab",
-        date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
-      },
-      {
-        name: "Referred Lab",
-        date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
-      },
-      {
-        name: "Referred Lab",
-        date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
-      },
-    ],
-  };
-
+const PatientDetails = ({ history, patientId, data }) => {
   const [component, setComponent] = useState({
     component: PatientData,
-    props: { data: data },
+    props: { data },
   });
 
   useEffect(() => {
@@ -223,7 +323,6 @@ const PatientDetails = ({ history, patientId }) => {
           component: SelectDM,
           props: null,
         });
-        console.log("Selected");
         break;
       default:
         setComponent({
@@ -233,7 +332,7 @@ const PatientDetails = ({ history, patientId }) => {
         // setComponent(PatientData);
         break;
     }
-  }, [history, patientId]);
+  }, [history, patientId, data]);
 
   return (
     <Paper className={styles.patientDetails}>
@@ -242,7 +341,7 @@ const PatientDetails = ({ history, patientId }) => {
           <Avatar
             style={{ width: "80px", height: "80px" }}
             className={styles.avatar}
-            src={patient2}
+            src={data.image}
           >
             {data.name.slice(2, data.name.length - 1)}
           </Avatar>
@@ -263,7 +362,7 @@ const PatientDetails = ({ history, patientId }) => {
             <Tooltip placement="top" title="Assessment">
               <IconButton
                 onClick={() => {
-                  history.push("/select");
+                  history.push(`/doctor/patients/${data.id}/select`);
                 }}
               >
                 <AssessmentIcon />

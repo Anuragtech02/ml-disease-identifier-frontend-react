@@ -184,7 +184,7 @@ const SelectDM = () => {
                     name="image"
                     onChange={changeImageUrl}
                     accept="image/jpg, image/png, image/jpeg"
-                    style={{ display: "none" }}
+                    style={{ width: "0", opacity: "0" }}
                   />
                 </Button>
                 {/* <label htmlFor="file" className={styles.btn3}>
