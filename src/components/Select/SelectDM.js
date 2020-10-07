@@ -104,12 +104,15 @@ const SelectDM = () => {
               ? setResult("No disease found!")
               : setResult(tempName);
             setLoading(false);
-            setImageUrl(
-              res.data.heatmaps[0].image.slice(
-                2,
-                res.data.heatmaps[0].image.length - 1
-              )
-            );
+            res.data.heatmaps.length
+              ? setImageUrl(
+                  res.data.heatmaps[0].image.slice(
+                    2,
+                    res.data.heatmaps[0].image.length - 1
+                  )
+                )
+              : setImageUrl(imageUrl);
+
             setAlpha(1);
             setIsError(false);
           }, 3000);
