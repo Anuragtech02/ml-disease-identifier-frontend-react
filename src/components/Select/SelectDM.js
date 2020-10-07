@@ -106,10 +106,11 @@ const SelectDM = () => {
             setLoading(false);
             res.data.heatmaps.length
               ? setImageUrl(
-                  res.data.heatmaps[0].image.slice(
-                    2,
-                    res.data.heatmaps[0].image.length - 1
-                  )
+                  "data:image/jpg;base64," +
+                    res.data.heatmaps[0].image.slice(
+                      2,
+                      res.data.heatmaps[0].image.length - 1
+                    )
                 )
               : setImageUrl(imageUrl);
 

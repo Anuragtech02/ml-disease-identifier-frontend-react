@@ -1,5 +1,6 @@
 {
   "name": "ml-disease-detection",
+  "homepage": "https://anuragtech02.github.io/ml-disease-identifier-frontend-react/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

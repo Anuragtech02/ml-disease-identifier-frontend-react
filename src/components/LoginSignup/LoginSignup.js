@@ -61,12 +61,13 @@ const LoginSignup = ({ history }) => {
 
   const loginSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await firebase.auth().signInWithEmailAndPassword(loginEmail, loginPass);
-      history.push("/welcome");
-    } catch (error) {
-      alert(error);
-    }
+    // try {
+    //   await firebase.auth().signInWithEmailAndPassword(loginEmail, loginPass);
+    //   history.push("/welcome");
+    // } catch (error) {
+    //   alert(error);
+    // }
+    history.push("/doctor/patients/ABC123");
   };
 
   // const { currentUser } = useContext(AuthContext);
