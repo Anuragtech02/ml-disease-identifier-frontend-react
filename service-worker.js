@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ml-disease-identifier-frontend-react/precache-manifest.c8929221529871e520c839250f8af86f.js"
+  "/ml-disease-identifier-frontend-react/precache-manifest.5d9f907c9a85172f79fd12783d5bc4e1.js"
 );
 
 self.addEventListener('message', (event) => {
