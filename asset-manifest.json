@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ml-disease-identifier-frontend-react/static/css/main.fa75aab4.chunk.css",
-    "main.js": "/ml-disease-identifier-frontend-react/static/js/main.579a38aa.chunk.js",
-    "main.js.map": "/ml-disease-identifier-frontend-react/static/js/main.579a38aa.chunk.js.map",
+    "main.js": "/ml-disease-identifier-frontend-react/static/js/main.c7007e17.chunk.js",
+    "main.js.map": "/ml-disease-identifier-frontend-react/static/js/main.c7007e17.chunk.js.map",
     "runtime-main.js": "/ml-disease-identifier-frontend-react/static/js/runtime-main.2f30b664.js",
     "runtime-main.js.map": "/ml-disease-identifier-frontend-react/static/js/runtime-main.2f30b664.js.map",
     "static/js/2.a24a9c91.chunk.js": "/ml-disease-identifier-frontend-react/static/js/2.a24a9c91.chunk.js",
     "static/js/2.a24a9c91.chunk.js.map": "/ml-disease-identifier-frontend-react/static/js/2.a24a9c91.chunk.js.map",
     "index.html": "/ml-disease-identifier-frontend-react/index.html",
-    "precache-manifest.5d9f907c9a85172f79fd12783d5bc4e1.js": "/ml-disease-identifier-frontend-react/precache-manifest.5d9f907c9a85172f79fd12783d5bc4e1.js",
+    "precache-manifest.e4465dd627289ff0ac91dd9a0a9d7bc6.js": "/ml-disease-identifier-frontend-react/precache-manifest.e4465dd627289ff0ac91dd9a0a9d7bc6.js",
     "service-worker.js": "/ml-disease-identifier-frontend-react/service-worker.js",
     "static/css/main.fa75aab4.chunk.css.map": "/ml-disease-identifier-frontend-react/static/css/main.fa75aab4.chunk.css.map",
     "static/js/2.a24a9c91.chunk.js.LICENSE.txt": "/ml-disease-identifier-frontend-react/static/js/2.a24a9c91.chunk.js.LICENSE.txt",
@@ -24,6 +24,6 @@
     "static/js/runtime-main.2f30b664.js",
     "static/js/2.a24a9c91.chunk.js",
     "static/css/main.fa75aab4.chunk.css",
-    "static/js/main.579a38aa.chunk.js"
+    "static/js/main.c7007e17.chunk.js"
   ]
 }
