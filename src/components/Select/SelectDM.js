@@ -8,12 +8,15 @@ import {
   Button,
   IconButton,
   CircularProgress,
+  Grid,
 } from "@material-ui/core";
 import styles from "./SelectDM.module.css";
 import classNames from "classnames";
 import photo from "../../assets/picture-thumbnail.svg";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { Bar } from "react-chartjs-2";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 const SelectDM = () => {
   const [aiModel, setAIModel] = useState("");
@@ -25,6 +28,8 @@ const SelectDM = () => {
   const [loading, setLoading] = useState(false);
   const [alpha, setAlpha] = useState(0);
   const [isError, setIsError] = useState(false);
+  const [chart, setChart] = useState(false);
+  const [predictions, setPredictions] = useState([]);
 
   // const image = createRef();
 
@@ -62,32 +67,10 @@ const SelectDM = () => {
     e.preventDefault();
     setLoading(true);
     setAlpha(0);
-
     try {
       const formData = new FormData();
       formData.append("file", url, url.name);
       console.log(url);
-      // await fetch("http://localhost:5000/api/predict", {
-      //   method: "POST",
-      //   mode: "no-cors",
-      //   body: formData,
-      //   headers: {
-      //     "content-type": "multipart/form-data",
-      //   },
-      // })
-      //   .then((response) => {
-      //     console.log(response);
-      //     return response.json();
-      //   })
-      //   .then((prediction) => {
-      //     console.log(prediction.data);
-      //     setTimeout(() => {
-      //       setResult(prediction);
-      //       setLoading(false);
-      //       setAlpha(1);
-      //       setIsError(false);
-      //     }, 3000);
-      //   });
       await axios
         .post("https://mxnet-aaiway.herokuapp.com/predict", formData, {
           headers: { "content-type": "multipart/form-data" },
@@ -114,6 +97,9 @@ const SelectDM = () => {
                 )
               : setImageUrl(imageUrl);
 
+            setChart(true);
+
+            setPredictions(res.data.prediction);
             setAlpha(1);
             setIsError(false);
           }, 3000);
@@ -132,126 +118,179 @@ const SelectDM = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <form onSubmit={onSubmit} encType="multipart/form-data">
-          <Card className={styles.card}>
-            <div className={styles.outer}>
-              <div className={classNames(styles.content1, tempClass)}>
-                <h2>aaiway</h2>
-                <FormControl className={styles.inputControl} variant="outlined">
-                  <InputLabel id="select-disease">Disease</InputLabel>
-                  <Select
-                    className={styles.input}
-                    value={aiModel}
-                    label="Disease"
-                    onChange={(e) => {
-                      setAIModel(e.target.value);
-                    }}
-                  >
-                    <MenuItem value="Disease 1">Related to Lungs</MenuItem>
-                    <MenuItem value="Disease 2">Related to Heart</MenuItem>
-                    <MenuItem value="Disease 3">Something else</MenuItem>
-                  </Select>
-                </FormControl>
-                <FormControl className={styles.inputControl} variant="outlined">
-                  <InputLabel id="select-ai-model">Ai Model</InputLabel>
-                  <Select
-                    className={styles.input}
-                    labelId="select-ai-model"
-                    label="Ai Model"
-                    value={disease}
-                    onChange={(e) => {
-                      setDisease(e.target.value);
-                    }}
-                  >
-                    <MenuItem value="Model 1">CNN Model</MenuItem>
-                    {/* <MenuItem value="Model 2">Model 2</MenuItem>
+        <Grid container spacing={2}>
+          <Grid item md={chart ? 6 : 12} className={styles.formContainer}>
+            <form onSubmit={onSubmit} encType="multipart/form-data">
+              <Card className={styles.card}>
+                <div className={styles.outer}>
+                  <div className={classNames(styles.content1, tempClass)}>
+                    <h2>aaiway</h2>
+                    <FormControl
+                      className={styles.inputControl}
+                      variant="outlined"
+                    >
+                      <InputLabel id="select-disease">Disease</InputLabel>
+                      <Select
+                        className={styles.input}
+                        value={aiModel}
+                        label="Disease"
+                        onChange={(e) => {
+                          setAIModel(e.target.value);
+                        }}
+                      >
+                        <MenuItem value="Disease 1">Related to Lungs</MenuItem>
+                        <MenuItem value="Disease 2">Related to Heart</MenuItem>
+                        <MenuItem value="Disease 3">Something else</MenuItem>
+                      </Select>
+                    </FormControl>
+                    <FormControl
+                      className={styles.inputControl}
+                      variant="outlined"
+                    >
+                      <InputLabel id="select-ai-model">Ai Model</InputLabel>
+                      <Select
+                        className={styles.input}
+                        labelId="select-ai-model"
+                        label="Ai Model"
+                        value={disease}
+                        onChange={(e) => {
+                          setDisease(e.target.value);
+                        }}
+                      >
+                        <MenuItem value="Model 1">CNN Model</MenuItem>
+                        {/* <MenuItem value="Model 2">Model 2</MenuItem>
                   <MenuItem value="Model 3">Model 3</MenuItem> */}
-                  </Select>
-                </FormControl>
-                <div>
-                  <IconButton
-                    className={styles.nextButton}
-                    onClick={changeClass}
-                  >
-                    <i className="fas fa-chevron-circle-right" />
-                  </IconButton>
-                </div>
-              </div>
-              <div className={classNames(styles.content2, tempClass)}>
-                <h3>Select an Image</h3>
-                <div className={styles.imageContainer}>
-                  <img src={imageUrl} alt="x-ray"></img>
-                </div>
-                <Button
-                  className={styles.inputBtn}
-                  variant="contained"
-                  component="label"
-                >
-                  <i className="fas fa-plus" />
-                  Upload File
-                  <input
-                    required
-                    type="file"
-                    id="file"
-                    name="image"
-                    onChange={changeImageUrl}
-                    accept="image/jpg, image/png, image/jpeg"
-                    style={{ width: "0", opacity: "0" }}
-                  />
-                </Button>
-                {/* <label htmlFor="file" className={styles.btn3}>
+                      </Select>
+                    </FormControl>
+                    <div>
+                      <IconButton
+                        className={styles.nextButton}
+                        onClick={changeClass}
+                      >
+                        <i className="fas fa-chevron-circle-right" />
+                      </IconButton>
+                    </div>
+                  </div>
+                  <div className={classNames(styles.content2, tempClass)}>
+                    <h3>Select an Image</h3>
+                    <div className={styles.imageContainer}>
+                      <img src={imageUrl} alt="x-ray"></img>
+                    </div>
+                    <Button
+                      className={styles.inputBtn}
+                      variant="contained"
+                      component="label"
+                    >
+                      <i className="fas fa-plus" />
+                      Upload File
+                      <input
+                        required
+                        type="file"
+                        id="file"
+                        name="image"
+                        onChange={changeImageUrl}
+                        accept="image/jpg, image/png, image/jpeg"
+                        style={{ width: "0", opacity: "0" }}
+                      />
+                    </Button>
+                    {/* <label htmlFor="file" className={styles.btn3}>
                   <span>Select</span>
                 </label> */}
-                <div className={styles.submitBtn}>
-                  <Button
-                    type="submit"
-                    className={styles.btnSubmit}
-                    variant="contained"
-                    color="primary"
-                  >
-                    Submit
-                  </Button>
-                </div>
-                <div
-                  style={{
-                    alignItems: "center",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  {loading ? (
-                    <CircularProgress className={styles.result} />
-                  ) : (
-                    <h4
+                    <div className={styles.submitBtn}>
+                      <Button
+                        type="submit"
+                        className={styles.btnSubmit}
+                        variant="contained"
+                        color="primary"
+                      >
+                        Submit
+                      </Button>
+                    </div>
+                    <div
                       style={{
-                        opacity: alpha,
-                        color: isError ? "red" : "green",
+                        alignItems: "center",
+                        display: "flex",
+                        justifyContent: "center",
                       }}
-                      className={styles.result}
                     >
-                      {result}
-                    </h4>
-                  )}
+                      {loading ? (
+                        <CircularProgress className={styles.result} />
+                      ) : (
+                        <h4
+                          style={{
+                            opacity: alpha,
+                            color: isError ? "red" : "green",
+                          }}
+                          className={styles.result}
+                        >
+                          {result}
+                        </h4>
+                      )}
+                    </div>
+                    <div className={styles.backBtn}>
+                      <Button
+                        onClick={() => {
+                          setTempClass(styles.nothing);
+                          setLoading(false);
+                          setAlpha(0);
+                        }}
+                        color="primary"
+                        variant="contained"
+                      >
+                        Back
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.backBtn}>
-                  <Button
-                    onClick={() => {
-                      setTempClass(styles.nothing);
-                      setLoading(false);
-                      setAlpha(0);
-                    }}
-                    color="primary"
-                    variant="contained"
-                  >
-                    Back
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </Card>
-        </form>
+              </Card>
+            </form>
+          </Grid>
+          <Grid item md={chart ? 6 : 0} className={styles.chartContainer}>
+            {chart ? <ChartComponent predictions={predictions} /> : null}
+          </Grid>
+        </Grid>
       </motion.div>
     </div>
   );
 };
 export default SelectDM;
+
+const ChartComponent = ({ predictions }) => {
+  let labels = [],
+    diseases = [],
+    bgColors = [];
+  predictions.forEach((prediction) => {
+    labels.push(prediction.name);
+    diseases.push((parseFloat(prediction.value) * 100).toFixed(2));
+    prediction.value >= 0.2
+      ? bgColors.push("rgb(173, 7, 7)")
+      : bgColors.push("rgba(255, 217, 0, 0.5)");
+  });
+
+  console.log(predictions);
+
+  return (
+    <>
+      {predictions && predictions.length ? (
+        <Bar
+          data={{
+            labels: labels,
+            datasets: [
+              {
+                label: "Disease",
+                backgroundColor: bgColors,
+                data: diseases,
+              },
+            ],
+          }}
+          options={{
+            legend: { display: false },
+            title: { display: true, text: "Risk Probability" },
+          }}
+        />
+      ) : (
+        <Skeleton />
+      )}
+    </>
+  );
+};
