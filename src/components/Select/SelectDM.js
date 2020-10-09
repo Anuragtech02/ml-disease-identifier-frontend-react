@@ -17,6 +17,11 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { Bar } from "react-chartjs-2";
 import Skeleton from "@material-ui/lab/Skeleton";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 const SelectDM = () => {
   const [aiModel, setAIModel] = useState("");
@@ -30,6 +35,10 @@ const SelectDM = () => {
   const [isError, setIsError] = useState(false);
   const [chart, setChart] = useState(false);
   const [predictions, setPredictions] = useState([]);
+  const [showHeatmap, setShowHeatmap] = useState(false);
+  const [heatmaps, setHeatmaps] = useState([]);
+
+  const sliderRef = createRef(null);
 
   // const image = createRef();
 
@@ -63,6 +72,14 @@ const SelectDM = () => {
     //console.log("Clicked");
   };
 
+  const onForwardClick = () => {
+    sliderRef.current.slickNext();
+  };
+
+  const onBackkwardClick = () => {
+    sliderRef.current.slickPrev();
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -87,19 +104,11 @@ const SelectDM = () => {
               ? setResult("No disease found!")
               : setResult(tempName);
             setLoading(false);
-            res.data.heatmaps.length
-              ? setImageUrl(
-                  "data:image/jpg;base64," +
-                    res.data.heatmaps[0].image.slice(
-                      2,
-                      res.data.heatmaps[0].image.length - 1
-                    )
-                )
-              : setImageUrl(imageUrl);
-
             setChart(true);
-
+            setShowHeatmap(true);
+            setHeatmaps(res.data.heatmaps);
             setPredictions(res.data.prediction);
+            localStorage.setItem("heatmaps", JSON.stringify(res.data.heatmaps));
             setAlpha(1);
             setIsError(false);
           }, 3000);
@@ -119,7 +128,7 @@ const SelectDM = () => {
         transition={{ duration: 0.5 }}
       >
         <Grid container spacing={2}>
-          <Grid item md={chart ? 6 : 12} className={styles.formContainer}>
+          <Grid item md={showHeatmap ? 6 : 12} className={styles.formContainer}>
             <form onSubmit={onSubmit} encType="multipart/form-data">
               <Card className={styles.card}>
                 <div className={styles.outer}>
@@ -245,11 +254,33 @@ const SelectDM = () => {
               </Card>
             </form>
           </Grid>
-          <Grid item md={chart ? 6 : 0} className={styles.chartContainer}>
-            {chart ? <ChartComponent predictions={predictions} /> : null}
+          <Grid item md={showHeatmap ? 6 : 0} className={styles.chartContainer}>
+            {showHeatmap ? (
+              <Card className={styles.heatmapCard}>
+                <IconButton
+                  onClick={onBackkwardClick}
+                  className={classNames(styles.arrowIcon, styles.arrowBackward)}
+                >
+                  <ArrowBackIcon fontSize="small" />
+                </IconButton>
+                <h2>Heatmaps</h2>
+                <HeatmapSlider sliderRef={sliderRef} heatmaps={heatmaps} />
+                <IconButton
+                  onClick={onForwardClick}
+                  className={classNames(styles.arrowIcon, styles.arrowForward)}
+                >
+                  <ArrowForwardIcon fontSize="small" />
+                </IconButton>
+              </Card>
+            ) : null}
           </Grid>
         </Grid>
       </motion.div>
+      <div className={styles.graphContainer}>
+        {chart ? (
+          <ChartComponent className={styles.graph} predictions={predictions} />
+        ) : null}
+      </div>
     </div>
   );
 };
@@ -262,17 +293,19 @@ const ChartComponent = ({ predictions }) => {
   predictions.forEach((prediction) => {
     labels.push(prediction.name);
     diseases.push((parseFloat(prediction.value) * 100).toFixed(2));
-    prediction.value >= 0.2
-      ? bgColors.push("rgb(173, 7, 7)")
-      : bgColors.push("rgba(255, 217, 0, 0.5)");
+    if (prediction.value <= 0.1) bgColors.push("green");
+    if (prediction.value > 0.1 && prediction.value <= 0.2)
+      bgColors.push("yellow");
+    if (prediction.value > 0.2) bgColors.push("red");
   });
 
   console.log(predictions);
 
   return (
-    <>
+    <div style={{ width: "100%", margin: "50px 0" }}>
       {predictions && predictions.length ? (
         <Bar
+          className={styles.barGraph}
           data={{
             labels: labels,
             datasets: [
@@ -286,11 +319,60 @@ const ChartComponent = ({ predictions }) => {
           options={{
             legend: { display: false },
             title: { display: true, text: "Risk Probability" },
+            scales: {
+              yAxes: [
+                {
+                  ticks: {
+                    min: 0,
+                    max: 100,
+                  },
+                },
+              ],
+            },
           }}
         />
       ) : (
         <Skeleton />
       )}
-    </>
+    </div>
+  );
+};
+
+const HeatmapSlider = ({ heatmaps, sliderRef }) => {
+  const [temp, setTemp] = useState([]);
+
+  useEffect(() => {
+    setTemp(JSON.parse(localStorage.getItem("heatmaps")));
+  }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  return (
+    <Slider {...settings} ref={sliderRef}>
+      {heatmaps.map((heatmap) => {
+        return (
+          <div key={heatmap.name} className={styles.heatmap}>
+            <div className={styles.heatmapImage}>
+              <img
+                src={`data:image/jpg;base64, ${heatmap.image.slice(
+                  2,
+                  heatmap.image.length - 1
+                )}`}
+                alt="heatmap"
+              />
+            </div>
+            <div className={styles.heatmapName}>
+              <h4>{heatmap.name}</h4>
+            </div>
+          </div>
+        );
+      })}
+    </Slider>
   );
 };

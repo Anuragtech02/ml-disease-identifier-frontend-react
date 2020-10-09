@@ -202,7 +202,7 @@ const Doctor = ({ history }) => {
 
   return (
     <div className={styles.container}>
-      <Grid spacing={0} container>
+      <Grid spacing={0} container className={styles.gridContainer}>
         <Grid item xs={12} s={6} md={4} lg={4} xl={3}>
           <div className={styles.sidebar}>
             <Paper className={styles.controlContainer}>
@@ -298,7 +298,7 @@ export default withRouter(Doctor);
 
 const ComponentToRender = ({ component: Component, props }) => {
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <div style={{ height: "100%", width: "100%", padding: "20px" }}>
       <Component {...props} />
     </div>
   );
