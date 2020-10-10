@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/ml-disease-identifier-frontend-react/static/css/main.d09278a1.chunk.css",
-    "main.js": "/ml-disease-identifier-frontend-react/static/js/main.740b779d.chunk.js",
-    "main.js.map": "/ml-disease-identifier-frontend-react/static/js/main.740b779d.chunk.js.map",
+    "main.css": "/ml-disease-identifier-frontend-react/static/css/main.ac26f867.chunk.css",
+    "main.js": "/ml-disease-identifier-frontend-react/static/js/main.9b0821b2.chunk.js",
+    "main.js.map": "/ml-disease-identifier-frontend-react/static/js/main.9b0821b2.chunk.js.map",
     "runtime-main.js": "/ml-disease-identifier-frontend-react/static/js/runtime-main.2f30b664.js",
     "runtime-main.js.map": "/ml-disease-identifier-frontend-react/static/js/runtime-main.2f30b664.js.map",
     "static/css/2.9e0db1b8.chunk.css": "/ml-disease-identifier-frontend-react/static/css/2.9e0db1b8.chunk.css",
     "static/js/2.a2157bbc.chunk.js": "/ml-disease-identifier-frontend-react/static/js/2.a2157bbc.chunk.js",
     "static/js/2.a2157bbc.chunk.js.map": "/ml-disease-identifier-frontend-react/static/js/2.a2157bbc.chunk.js.map",
     "index.html": "/ml-disease-identifier-frontend-react/index.html",
-    "precache-manifest.ac05ffc59e5f0c0afff2f52e698f389d.js": "/ml-disease-identifier-frontend-react/precache-manifest.ac05ffc59e5f0c0afff2f52e698f389d.js",
+    "precache-manifest.10acacfdc049efe2ab809ac6bd821c99.js": "/ml-disease-identifier-frontend-react/precache-manifest.10acacfdc049efe2ab809ac6bd821c99.js",
     "service-worker.js": "/ml-disease-identifier-frontend-react/service-worker.js",
     "static/css/2.9e0db1b8.chunk.css.map": "/ml-disease-identifier-frontend-react/static/css/2.9e0db1b8.chunk.css.map",
-    "static/css/main.d09278a1.chunk.css.map": "/ml-disease-identifier-frontend-react/static/css/main.d09278a1.chunk.css.map",
+    "static/css/main.ac26f867.chunk.css.map": "/ml-disease-identifier-frontend-react/static/css/main.ac26f867.chunk.css.map",
     "static/js/2.a2157bbc.chunk.js.LICENSE.txt": "/ml-disease-identifier-frontend-react/static/js/2.a2157bbc.chunk.js.LICENSE.txt",
     "static/media/ai-robot.svg": "/ml-disease-identifier-frontend-react/static/media/ai-robot.0a53804b.svg",
     "static/media/covid.svg": "/ml-disease-identifier-frontend-react/static/media/covid.9de8c225.svg",
@@ -28,7 +28,7 @@
     "static/js/runtime-main.2f30b664.js",
     "static/css/2.9e0db1b8.chunk.css",
     "static/js/2.a2157bbc.chunk.js",
-    "static/css/main.d09278a1.chunk.css",
-    "static/js/main.740b779d.chunk.js"
+    "static/css/main.ac26f867.chunk.css",
+    "static/js/main.9b0821b2.chunk.js"
   ]
 }
