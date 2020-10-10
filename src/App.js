@@ -26,6 +26,11 @@ const App = () => {
             path="/doctor/patients/:patientId/select"
             component={Doctor}
           />
+          <Route
+            exact
+            path="/doctor/patients/:patientId/benchmark"
+            component={Doctor}
+          />
         </Switch>
       </div>
     </Router>

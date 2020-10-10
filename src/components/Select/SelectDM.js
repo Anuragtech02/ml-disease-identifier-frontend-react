@@ -202,9 +202,6 @@ const SelectDM = () => {
                         style={{ width: "0", opacity: "0" }}
                       />
                     </Button>
-                    {/* <label htmlFor="file" className={styles.btn3}>
-                  <span>Select</span>
-                </label> */}
                     <div className={styles.submitBtn}>
                       <Button
                         type="submit"

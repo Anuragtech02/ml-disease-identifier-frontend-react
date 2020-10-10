@@ -15,7 +15,8 @@ import {
   TextField,
   Tooltip,
   Avatar,
-  Divider,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import { useParams } from "react-router";
@@ -31,6 +32,7 @@ import patient2 from "../../assets/Patients/patient2.jpg";
 import patient3 from "../../assets/Patients/patient3.jpg";
 import classNames from "classnames";
 import { SelectDM } from "../../components";
+import Benchmarking from "../Benchmarking/Benchmarking";
 
 const Doctor = ({ history }) => {
   const [patientSearch, setPatientSearch] = useState("");
@@ -310,6 +312,17 @@ const PatientDetails = ({ history, patientId, data }) => {
     props: { data },
   });
 
+  const [anchor, setAnchor] = useState(null);
+  const assessmentMenu = Boolean(anchor);
+
+  const handleMenu = (e) => {
+    setAnchor(e.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchor(null);
+  };
+
   useEffect(() => {
     switch (history.location.pathname) {
       case `/doctor/patients/${patientId}`:
@@ -321,6 +334,12 @@ const PatientDetails = ({ history, patientId, data }) => {
       case `/doctor/patients/${patientId}/select`:
         setComponent({
           component: SelectDM,
+          props: null,
+        });
+        break;
+      case `/doctor/patients/${patientId}/benchmark`:
+        setComponent({
+          component: Benchmarking,
           props: null,
         });
         break;
@@ -351,6 +370,38 @@ const PatientDetails = ({ history, patientId, data }) => {
           </div>
         </div>
         <div className={styles.iconContainer}>
+          <Menu
+            open={assessmentMenu}
+            anchorEl={anchor}
+            keepMounted
+            id="fade-menu"
+            onClose={handleMenuClose}
+          >
+            <MenuItem
+              onClick={() => {
+                history.push(`/doctor/patients/${data.id}/select`);
+                handleMenuClose();
+              }}
+            >
+              Covid
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                history.push(`/doctor/patients/${data.id}/select`);
+                handleMenuClose();
+              }}
+            >
+              Assessment
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                history.push(`/doctor/patients/${data.id}/benchmark`);
+                handleMenuClose();
+              }}
+            >
+              Benchmarking
+            </MenuItem>
+          </Menu>
           <div className={styles.chat}>
             <Tooltip placement="top" title="Chat">
               <IconButton>
@@ -361,9 +412,9 @@ const PatientDetails = ({ history, patientId, data }) => {
           <div className={classNames(styles.chat)}>
             <Tooltip placement="top" title="Assessment">
               <IconButton
-                onClick={() => {
-                  history.push(`/doctor/patients/${data.id}/select`);
-                }}
+                onClick={handleMenu}
+                aria-controls="fade-menu"
+                aria-haspopup="true"
               >
                 <AssessmentIcon />
               </IconButton>
