@@ -19,18 +19,32 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />
           <Route path="/welcome" component={Welcome} />
-          <Route exact path="/doctor" component={Doctor} />
-          <Route exact path="/doctor/patients/:patientId" component={Doctor} />
-          <Route
-            exact
-            path="/doctor/patients/:patientId/select"
-            component={Doctor}
-          />
-          <Route
-            exact
-            path="/doctor/patients/:patientId/benchmark"
-            component={Doctor}
-          />
+          <div
+            style={{
+              width: "100%",
+              height: "92vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Route exact path="/doctor" component={Doctor} />
+            <Route
+              exact
+              path="/doctor/patients/:patientId"
+              component={Doctor}
+            />
+            <Route
+              exact
+              path="/doctor/patients/:patientId/select"
+              component={Doctor}
+            />
+            <Route
+              exact
+              path="/doctor/patients/:patientId/benchmark"
+              component={Doctor}
+            />
+          </div>
         </Switch>
       </div>
     </Router>

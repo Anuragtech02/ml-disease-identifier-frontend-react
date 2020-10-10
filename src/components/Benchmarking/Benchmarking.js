@@ -39,7 +39,7 @@ const Benchmarking = () => {
   };
 
   const modal = {
-    images: [sampleXray, sampleXray],
+    images: [photoFromUrl ? photoFromUrl : sampleXray, sampleXray],
     titles: ["Original Image", "Comparison Image"],
   };
 

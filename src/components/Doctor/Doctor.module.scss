@@ -2,10 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-top: 5%;
+  // padding-top: 5%;
   width: var(--fixedWidth);
-  margin: auto;
-  height: 100%;
+  margin: 0 auto;
+  // height: 60vh !important;
   .gridContainer {
     height: 100% !important;
   }

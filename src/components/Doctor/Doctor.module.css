@@ -8,10 +8,8 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  padding-top: 5%;
   width: var(--fixedWidth);
-  margin: auto;
-  height: 100%;
+  margin: 0 auto;
 }
 
 .container .gridContainer {
