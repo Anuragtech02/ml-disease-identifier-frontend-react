@@ -31,7 +31,7 @@ import patient1 from "../../assets/Patients/patient1.jpg";
 import patient2 from "../../assets/Patients/patient2.jpg";
 import patient3 from "../../assets/Patients/patient3.jpg";
 import classNames from "classnames";
-import { SelectDM } from "../../components";
+import { SelectDM, Covid } from "../../components";
 import Benchmarking from "../Benchmarking/Benchmarking";
 
 const Doctor = ({ history }) => {
@@ -331,6 +331,12 @@ const PatientDetails = ({ history, patientId, data }) => {
           props: { data },
         });
         break;
+      case `/doctor/patients/${patientId}/covid`:
+        setComponent({
+          component: Covid,
+          props: null,
+        });
+        break;
       case `/doctor/patients/${patientId}/select`:
         setComponent({
           component: SelectDM,
@@ -366,7 +372,7 @@ const PatientDetails = ({ history, patientId, data }) => {
           </Avatar>
           <div className={styles.intro}>
             <h4>{data.name}</h4>
-            <p>{data.disease}</p>
+            <p>Detected with {data.disease}</p>
           </div>
         </div>
         <div className={styles.iconContainer}>
@@ -391,7 +397,7 @@ const PatientDetails = ({ history, patientId, data }) => {
                 handleMenuClose();
               }}
             >
-              Assessment
+              Other Diseases
             </MenuItem>
             <MenuItem
               onClick={() => {

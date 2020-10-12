@@ -50,7 +50,7 @@ const Benchmarking = () => {
           <Card className={styles.original}>
             <Tooltip
               placement="top"
-              title="Fullscreen"
+              title="Expand Image"
               className={styles.fullScreen}
             >
               <IconButton onClick={() => setModalOpen(true)}>
@@ -58,7 +58,7 @@ const Benchmarking = () => {
               </IconButton>
             </Tooltip>
             <div className={styles.title}>
-              <h4>Select Image</h4>
+              <h4>Select X-Ray/CT-Scan Image</h4>
             </div>
             <form className={styles.originalPhotoForm}>
               <div className={styles.originalImage}>
