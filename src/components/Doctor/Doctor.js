@@ -42,7 +42,7 @@ const Doctor = ({ history }) => {
 
   const patients = [
     {
-      name: "Sample Patient",
+      name: "Ankita Tripathi",
       disease: "Covid",
       image: patient1,
       id: "ABC123",
@@ -54,11 +54,11 @@ const Doctor = ({ history }) => {
       },
       diagnosis: [
         {
-          name: "Referred Lab",
+          name: "Detected Covid",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
-          name: "Referred Lab",
+          name: "X-Ray Received",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
@@ -68,23 +68,23 @@ const Doctor = ({ history }) => {
       ],
     },
     {
-      name: "Random Patient",
-      disease: "Disease",
+      name: "Yashi Gupta",
+      disease: "Atelectasis",
       image: patient2,
       id: "ABC456",
       info: {
-        age: 27,
+        age: 22,
         gender: "Female",
         address: "Indore, Madhya Pradesh",
         contact: 9876543210,
       },
       diagnosis: [
         {
-          name: "Referred Lab",
+          name: "Atelectasis Found",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
-          name: "Referred Lab",
+          name: "CT Scan",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
@@ -94,23 +94,23 @@ const Doctor = ({ history }) => {
       ],
     },
     {
-      name: "Simple Patient",
-      disease: "Problem",
+      name: "Sakshi Jain",
+      disease: "Nodule",
       image: patient3,
       id: "ABC789",
       info: {
-        age: 27,
+        age: 40,
         gender: "Female",
         address: "Indore, Madhya Pradesh",
         contact: 9876543210,
       },
       diagnosis: [
         {
-          name: "Referred Lab",
+          name: "Nodule Detected",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
-          name: "Referred Lab",
+          name: "X-Ray Done",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
@@ -120,7 +120,7 @@ const Doctor = ({ history }) => {
       ],
     },
     {
-      name: "Sample Patient",
+      name: "Ankita Tripathi",
       disease: "Covid",
       image: patient1,
       id: "BCD123",
@@ -132,11 +132,11 @@ const Doctor = ({ history }) => {
       },
       diagnosis: [
         {
-          name: "Referred Lab",
+          name: "Detected Covid",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
-          name: "Referred Lab",
+          name: "X-Ray Received",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
@@ -146,23 +146,23 @@ const Doctor = ({ history }) => {
       ],
     },
     {
-      name: "Random Patient",
-      disease: "Disease",
+      name: "Yashi Gupta",
+      disease: "Atelectasis",
       image: patient2,
       id: "BCD456",
       info: {
-        age: 27,
+        age: 22,
         gender: "Female",
         address: "Indore, Madhya Pradesh",
         contact: 9876543210,
       },
       diagnosis: [
         {
-          name: "Referred Lab",
+          name: "Atelectasis Found",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
-          name: "Referred Lab",
+          name: "CT Scan",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
@@ -172,8 +172,8 @@ const Doctor = ({ history }) => {
       ],
     },
     {
-      name: "Simple Patient",
-      disease: "Problem",
+      name: "Sakshi Jain",
+      disease: "Nodule",
       image: patient3,
       id: "BCD789",
       info: {
@@ -184,11 +184,11 @@ const Doctor = ({ history }) => {
       },
       diagnosis: [
         {
-          name: "Referred Lab",
+          name: "Nodule Detected",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
-          name: "Referred Lab",
+          name: "X-Ray Done",
           date: `${date.getMonth()} ${date.getDate()}, ${date.getFullYear()}`,
         },
         {
