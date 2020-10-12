@@ -36,6 +36,11 @@ const App = () => {
             />
             <Route
               exact
+              path="/doctor/patients/:patientId/covid"
+              component={Doctor}
+            />
+            <Route
+              exact
               path="/doctor/patients/:patientId/select"
               component={Doctor}
             />

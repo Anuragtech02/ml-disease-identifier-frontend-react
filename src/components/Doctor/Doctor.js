@@ -25,6 +25,7 @@ import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
 import { AddCircleRounded } from "@material-ui/icons";
+import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import SearchIcon from "@material-ui/icons/Search";
 import patient1 from "../../assets/Patients/patient1.jpg";
@@ -233,9 +234,9 @@ const Doctor = ({ history }) => {
             </Paper>
             <Paper className={styles.actionPanel}>
               <div className={styles.addNew}>
-                <h3>Add New</h3>
+                <h3>Dr. Jagdish Sharma</h3>
                 <IconButton className={styles.icon}>
-                  <AddCircleRounded />
+                  <AccountBoxIcon />
                 </IconButton>
               </div>
               <div className={styles.heading}>
@@ -385,11 +386,11 @@ const PatientDetails = ({ history, patientId, data }) => {
           >
             <MenuItem
               onClick={() => {
-                history.push(`/doctor/patients/${data.id}/select`);
+                history.push(`/doctor/patients/${data.id}/covid`);
                 handleMenuClose();
               }}
             >
-              Covid
+              Covid Analysis
             </MenuItem>
             <MenuItem
               onClick={() => {

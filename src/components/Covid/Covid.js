@@ -15,17 +15,10 @@ import classNames from "classnames";
 import photo from "../../assets/picture-thumbnail.svg";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { Bar } from "react-chartjs-2";
-import Skeleton from "@material-ui/lab/Skeleton";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 const Covid = () => {
   const [aiModel, setAIModel] = useState("");
-  const [disease, setDisease] = useState("");
+  const [disease, setDisease] = useState("Disease 1");
   const [imageUrl, setImageUrl] = useState(photo);
   const [url, setUrl] = useState("");
   const [result, setResult] = useState("Result");
@@ -33,14 +26,6 @@ const Covid = () => {
   const [loading, setLoading] = useState(false);
   const [alpha, setAlpha] = useState(0);
   const [isError, setIsError] = useState(false);
-  const [chart, setChart] = useState(false);
-  const [predictions, setPredictions] = useState([]);
-  const [showHeatmap, setShowHeatmap] = useState(false);
-  const [heatmaps, setHeatmaps] = useState([]);
-
-  const sliderRef = createRef(null);
-
-  // const image = createRef();
 
   const changeImageUrl = (e) => {
     let reader = new FileReader();
@@ -72,14 +57,6 @@ const Covid = () => {
     //console.log("Clicked");
   };
 
-  const onForwardClick = () => {
-    sliderRef.current.slickNext();
-  };
-
-  const onBackkwardClick = () => {
-    sliderRef.current.slickPrev();
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -89,26 +66,16 @@ const Covid = () => {
       formData.append("file", url, url.name);
       console.log(url);
       await axios
-        .post("https://mxnet-aaiway.herokuapp.com/predict", formData, {
+        .post("https://covid-aaiway.herokuapp.com/predict", formData, {
           headers: { "content-type": "multipart/form-data" },
           method: "POST",
         })
         .then((res) => {
-          console.log(res);
-          let tempName = "";
+          //   console.log(res);
           setTimeout(() => {
-            res.data.heatmaps.forEach(
-              (heatmap) => (tempName = tempName + heatmap.name + " found, ")
-            );
-            !res.data.heatmaps.length
-              ? setResult("No disease found!")
-              : setResult(tempName);
+            if (res.data.Disease) setResult("COVID Found");
+            else setResult("COVID not found");
             setLoading(false);
-            setChart(true);
-            setShowHeatmap(true);
-            setHeatmaps(res.data.heatmaps);
-            setPredictions(res.data.prediction);
-            localStorage.setItem("heatmaps", JSON.stringify(res.data.heatmaps));
             setAlpha(1);
             setIsError(false);
           }, 3000);
@@ -128,12 +95,13 @@ const Covid = () => {
         transition={{ duration: 0.5 }}
       >
         <Grid container spacing={2}>
-          <Grid item md={showHeatmap ? 6 : 12} className={styles.formContainer}>
+          <Grid item md={12} className={styles.formContainer}>
             <form onSubmit={onSubmit} encType="multipart/form-data">
               <Card className={styles.card}>
                 <div className={styles.outer}>
                   <div className={classNames(styles.content1, tempClass)}>
                     <h2>aaiway</h2>
+                    <p>Covid Analysis</p>
                     <FormControl
                       className={styles.inputControl}
                       variant="outlined"
@@ -141,15 +109,14 @@ const Covid = () => {
                       <InputLabel id="select-disease">Disease</InputLabel>
                       <Select
                         className={styles.input}
-                        value={aiModel}
-                        label="Disease"
+                        value={disease}
+                        label="Ai Model"
+                        disabled
                         onChange={(e) => {
-                          setAIModel(e.target.value);
+                          setDisease(e.target.value);
                         }}
                       >
-                        <MenuItem value="Disease 1">Related to Lungs</MenuItem>
-                        <MenuItem value="Disease 2">Related to Heart</MenuItem>
-                        <MenuItem value="Disease 3">Something else</MenuItem>
+                        <MenuItem value="Disease 1">COVID-19</MenuItem>
                       </Select>
                     </FormControl>
                     <FormControl
@@ -161,9 +128,9 @@ const Covid = () => {
                         className={styles.input}
                         labelId="select-ai-model"
                         label="Ai Model"
-                        value={disease}
+                        value={aiModel}
                         onChange={(e) => {
-                          setDisease(e.target.value);
+                          setAIModel(e.target.value);
                         }}
                       >
                         <MenuItem value="Model 1">CNN Model</MenuItem>
@@ -251,125 +218,9 @@ const Covid = () => {
               </Card>
             </form>
           </Grid>
-          <Grid item md={showHeatmap ? 6 : 0} className={styles.chartContainer}>
-            {showHeatmap ? (
-              <Card className={styles.heatmapCard}>
-                <IconButton
-                  onClick={onBackkwardClick}
-                  className={classNames(styles.arrowIcon, styles.arrowBackward)}
-                >
-                  <ArrowBackIcon fontSize="small" />
-                </IconButton>
-                <h2>Heatmaps</h2>
-                <HeatmapSlider sliderRef={sliderRef} heatmaps={heatmaps} />
-                <IconButton
-                  onClick={onForwardClick}
-                  className={classNames(styles.arrowIcon, styles.arrowForward)}
-                >
-                  <ArrowForwardIcon fontSize="small" />
-                </IconButton>
-              </Card>
-            ) : null}
-          </Grid>
         </Grid>
       </motion.div>
-      <div className={styles.graphContainer}>
-        {chart ? (
-          <ChartComponent className={styles.graph} predictions={predictions} />
-        ) : null}
-      </div>
     </div>
   );
 };
 export default Covid;
-
-const ChartComponent = ({ predictions }) => {
-  let labels = [],
-    diseases = [],
-    bgColors = [];
-  predictions.forEach((prediction) => {
-    labels.push(prediction.name);
-    diseases.push((parseFloat(prediction.value) * 100).toFixed(2));
-    if (prediction.value <= 0.1) bgColors.push("green");
-    if (prediction.value > 0.1 && prediction.value <= 0.2)
-      bgColors.push("yellow");
-    if (prediction.value > 0.2) bgColors.push("red");
-  });
-
-  console.log(predictions);
-
-  return (
-    <div style={{ width: "100%", margin: "50px 0" }}>
-      {predictions && predictions.length ? (
-        <Bar
-          className={styles.barGraph}
-          data={{
-            labels: labels,
-            datasets: [
-              {
-                label: "Disease",
-                backgroundColor: bgColors,
-                data: diseases,
-              },
-            ],
-          }}
-          options={{
-            legend: { display: false },
-            title: { display: true, text: "Risk Probability" },
-            scales: {
-              yAxes: [
-                {
-                  ticks: {
-                    min: 0,
-                    max: 100,
-                  },
-                },
-              ],
-            },
-          }}
-        />
-      ) : (
-        <Skeleton />
-      )}
-    </div>
-  );
-};
-
-const HeatmapSlider = ({ heatmaps, sliderRef }) => {
-  const [temp, setTemp] = useState([]);
-
-  useEffect(() => {
-    setTemp(JSON.parse(localStorage.getItem("heatmaps")));
-  }, []);
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  return (
-    <Slider {...settings} ref={sliderRef}>
-      {heatmaps.map((heatmap) => {
-        return (
-          <div key={heatmap.name} className={styles.heatmap}>
-            <div className={styles.heatmapImage}>
-              <img
-                src={`data:image/jpg;base64, ${heatmap.image.slice(
-                  2,
-                  heatmap.image.length - 1
-                )}`}
-                alt="heatmap"
-              />
-            </div>
-            <div className={styles.heatmapName}>
-              <h4>{heatmap.name}</h4>
-            </div>
-          </div>
-        );
-      })}
-    </Slider>
-  );
-};

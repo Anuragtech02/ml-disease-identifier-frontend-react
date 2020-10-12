@@ -134,6 +134,7 @@ const SelectDM = () => {
                 <div className={styles.outer}>
                   <div className={classNames(styles.content1, tempClass)}>
                     <h2>aaiway</h2>
+                    <p>Other Diseases</p>
                     <FormControl
                       className={styles.inputControl}
                       variant="outlined"
