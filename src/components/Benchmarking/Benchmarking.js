@@ -15,12 +15,15 @@ import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import sampleXray from "../../assets/sample-xray.jpeg";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 import CancelIcon from "@material-ui/icons/Cancel";
+import atelectasis from "../../assets/Ideal/Atelectasis/atelectasis.png";
+import nodule from "../../assets/Ideal/Nodule/nodule.png";
+import emphysema from "../../assets/Ideal/Emphysema/emphysema.png";
 
 const Benchmarking = () => {
   const [photoFromUrl, setPhotoFromUrl] = useState("");
   const [prevImage, setPrevImage] = useState(photoFromUrl);
-  const [comparisonImage, setComparisonImage] = useState(sampleXray);
-  const [comparisonImageTitle, setComparisonImageTitle] = useState("");
+  const [comparisonImage, setComparisonImage] = useState(atelectasis);
+  const [comparisonImageTitle, setComparisonImageTitle] = useState("image1");
   const [modalOpen, setModalOpen] = useState(false);
 
   const changeImageUrl = (e) => {
@@ -108,12 +111,19 @@ const Benchmarking = () => {
               <InputLabel>Comparison Image</InputLabel>
               <Select
                 value={comparisonImageTitle}
-                onChange={(e) => setComparisonImageTitle(e.target.value)}
+                onChange={(e) => {
+                  setComparisonImageTitle(e.target.value);
+                  if (e.target.value === "image1")
+                    setComparisonImage(atelectasis);
+                  else if (e.target.value === "image2")
+                    setComparisonImage(emphysema);
+                  else setComparisonImage(nodule);
+                }}
                 label="Comparison Image"
               >
-                <MenuItem value="image1">Image 1</MenuItem>
-                <MenuItem value="image2">Image 2</MenuItem>
-                <MenuItem value="image3">Image 3</MenuItem>
+                <MenuItem value="image1">Atelectasis</MenuItem>
+                <MenuItem value="image2">Emphysema</MenuItem>
+                <MenuItem value="image3">Nodule</MenuItem>
               </Select>
             </FormControl>
             <div className={styles.compareImageContainer}>
@@ -125,7 +135,7 @@ const Benchmarking = () => {
       <Modal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        images={modal.images}
+        images={[photoFromUrl, comparisonImage]}
         titles={modal.titles}
       />
     </>
@@ -134,7 +144,7 @@ const Benchmarking = () => {
 
 export default Benchmarking;
 
-const Modal = ({ images, titles, modalOpen, setModalOpen }) => {
+const Modal = ({ images, modalOpen, setModalOpen }) => {
   return (
     <div
       className={styles.modal}
@@ -153,7 +163,7 @@ const Modal = ({ images, titles, modalOpen, setModalOpen }) => {
       <Grid container spacing={4}>
         <Grid className={styles.modalItem} md={6} sm={12}>
           <div className={styles.modalTitle}>
-            <h3>{titles[0]}</h3>
+            <h3>Original Image</h3>
           </div>
           <div className={styles.modalImage}>
             <img src={images[0]} alt="modal-disease-fullscreen" />
@@ -161,7 +171,7 @@ const Modal = ({ images, titles, modalOpen, setModalOpen }) => {
         </Grid>
         <Grid className={styles.modalItem} md={6} sm={12}>
           <div className={styles.modalTitle}>
-            <h3>{titles[1]}</h3>
+            <h3>Comparison Image</h3>
           </div>
           <div className={styles.modalImage}>
             <img src={images[1]} alt="modal-disease-fullscreen" />

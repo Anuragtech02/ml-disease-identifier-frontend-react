@@ -73,8 +73,9 @@ const Covid = () => {
         .then((res) => {
           //   console.log(res);
           setTimeout(() => {
-            if (res.data.Disease) setResult("COVID Found");
-            else setResult("COVID not found");
+            if (res.data.Disease) {
+              setResult("High Risk of Covid!");
+            } else setResult("Low risk of Covid");
             setLoading(false);
             setAlpha(1);
             setIsError(false);
