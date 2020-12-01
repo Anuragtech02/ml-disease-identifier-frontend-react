@@ -1,14 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styles from "./App.module.css";
-import {
-  NavBar,
-  About,
-  LoginSignup,
-  Welcome,
-  SelectDM,
-  Doctor,
-} from "./components";
+import { NavBar, About, LoginSignup, Welcome, Doctor } from "./components";
 
 const App = () => {
   return (
@@ -41,7 +34,7 @@ const App = () => {
             />
             <Route
               exact
-              path="/doctor/patients/:patientId/select"
+              path="/doctor/patients/:patientId/analysis"
               component={Doctor}
             />
             <Route

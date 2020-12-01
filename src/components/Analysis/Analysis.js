@@ -10,7 +10,7 @@ import {
   CircularProgress,
   Grid,
 } from "@material-ui/core";
-import styles from "./SelectDM.module.css";
+import styles from "./Analysis.module.css";
 import classNames from "classnames";
 import photo from "../../assets/picture-thumbnail.svg";
 import axios from "axios";
@@ -23,7 +23,7 @@ import Slider from "react-slick";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
-const SelectDM = () => {
+const Analysis = () => {
   const [aiModel, setAIModel] = useState("");
   const [disease, setDisease] = useState("");
   const [imageUrl, setImageUrl] = useState(photo);
@@ -89,7 +89,7 @@ const SelectDM = () => {
       formData.append("file", url, url.name);
       console.log(url);
       await axios
-        .post("https://mxnet-aaiway.herokuapp.com/predict", formData, {
+        .post("http://142.93.222.59:5002/predict", formData, {
           headers: { "content-type": "multipart/form-data" },
           method: "POST",
         })
@@ -282,7 +282,7 @@ const SelectDM = () => {
     </div>
   );
 };
-export default SelectDM;
+export default Analysis;
 
 const ChartComponent = ({ predictions }) => {
   let labels = [],

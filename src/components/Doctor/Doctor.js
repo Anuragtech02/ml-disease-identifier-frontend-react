@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styles from "./Doctor.module.css";
 import {
   Paper,
-  Button,
   Card,
   Grid,
   Table,
@@ -12,7 +11,6 @@ import {
   TableContainer,
   TableHead,
   IconButton,
-  TextField,
   Tooltip,
   Avatar,
   Menu,
@@ -24,7 +22,6 @@ import ChatIcon from "@material-ui/icons/Chat";
 import PermContactCalendarIcon from "@material-ui/icons/PermContactCalendar";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import CreateNewFolderIcon from "@material-ui/icons/CreateNewFolder";
-import { AddCircleRounded } from "@material-ui/icons";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import AssessmentIcon from "@material-ui/icons/Assessment";
 import SearchIcon from "@material-ui/icons/Search";
@@ -32,7 +29,7 @@ import patient1 from "../../assets/Patients/patient1.jpg";
 import patient2 from "../../assets/Patients/patient2.jpg";
 import patient3 from "../../assets/Patients/patient3.jpg";
 import classNames from "classnames";
-import { SelectDM, Covid } from "../../components";
+import { Analysis, Covid } from "../../components";
 import Benchmarking from "../Benchmarking/Benchmarking";
 
 const Doctor = ({ history }) => {
@@ -338,9 +335,9 @@ const PatientDetails = ({ history, patientId, data }) => {
           props: null,
         });
         break;
-      case `/doctor/patients/${patientId}/select`:
+      case `/doctor/patients/${patientId}/analysis`:
         setComponent({
-          component: SelectDM,
+          component: Analysis,
           props: null,
         });
         break;
@@ -394,7 +391,7 @@ const PatientDetails = ({ history, patientId, data }) => {
             </MenuItem>
             <MenuItem
               onClick={() => {
-                history.push(`/doctor/patients/${data.id}/select`);
+                history.push(`/doctor/patients/${data.id}/analysis`);
                 handleMenuClose();
               }}
             >

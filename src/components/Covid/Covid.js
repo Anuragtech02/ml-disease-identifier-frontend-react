@@ -66,7 +66,7 @@ const Covid = () => {
       formData.append("file", url, url.name);
       console.log(url);
       await axios
-        .post("https://covid-aaiway.herokuapp.com/predict", formData, {
+        .post("http://142.93.222.59:5002/predict", formData, {
           headers: { "content-type": "multipart/form-data" },
           method: "POST",
         })
