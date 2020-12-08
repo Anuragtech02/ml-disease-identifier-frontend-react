@@ -18,13 +18,13 @@
 
 .container h1 {
   font-size: 15rem;
-  color: var(--tintColor);
+  color: var(--primaryColor);
   font-weight: 600;
 }
 
 .container h5 {
   font-size: 1.2rem;
   margin-top: 10px;
-  color: var(--primaryColor);
+  color: var(--primaryColorLight);
 }
 /*# sourceMappingURL=NotFound.module.css.map */
