@@ -1,7 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styles from "./App.module.css";
-import { NavBar, About, LoginSignup, Welcome, Doctor, NotFound } from "./components";
+import {
+  NavBar,
+  About,
+  LoginSignup,
+  Welcome,
+  Doctor,
+  NotFound,
+} from "./components";
 
 const App = () => {
   return (
@@ -42,7 +49,7 @@ const App = () => {
               path="/doctor/patients/:patientId/benchmark"
               component={Doctor}
             />
-            <Route component={NotFound} />
+            {/* <Route component={NotFound} /> */}
           </div>
         </Switch>
       </div>
