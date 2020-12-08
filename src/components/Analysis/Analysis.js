@@ -89,7 +89,7 @@ const Analysis = () => {
       formData.append("file", url, url.name);
       console.log(url);
       await axios
-        .post("http://142.93.222.59:5002/predict", formData, {
+        .post("https://aaiwayindia.com:5002/predict", formData, {
           headers: { "content-type": "multipart/form-data" },
           method: "POST",
         })

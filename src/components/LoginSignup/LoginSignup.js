@@ -34,29 +34,29 @@ const LoginSignup = ({ history }) => {
 
   const signupSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await firebase
-        .auth()
-        .createUserWithEmailAndPassword(signupEmail, signupPass)
-        .then(async () => {
-          const db = firebase.firestore();
-          const ref = db.collection("users");
-          const id = await ref.doc().id;
-          await ref.doc(id).set({
-            id,
-            email: signupEmail,
-            name: name,
-            category: category,
-            verification: verification,
-          });
-        })
-        .then(() => {
-          alert("User created succesfully :) ");
-          history.push("/welcome");
-        });
-    } catch (error) {
-      alert(error);
-    }
+    // try {
+    //   await firebase
+    //     .auth()
+    //     .createUserWithEmailAndPassword(signupEmail, signupPass)
+    //     .then(async () => {
+    //       const db = firebase.firestore();
+    //       const ref = db.collection("users");
+    //       const id = await ref.doc().id;
+    //       await ref.doc(id).set({
+    //         id,
+    //         email: signupEmail,
+    //         name: name,
+    //         category: category,
+    //         verification: verification,
+    //       });
+    //     })
+    //     .then(() => {
+    //       alert("User created succesfully :) ");
+    //       history.push("/welcome");
+    //     });
+    // } catch (error) {
+    //   alert(error);
+    // }
   };
 
   const loginSubmit = async (e) => {
