@@ -1,0 +1,19 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    font-size: 15rem;
+    color: var(--primaryColor);
+    font-weight: 600;
+  }
+  h5 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: var(--primaryColorLight);
+  }
+}

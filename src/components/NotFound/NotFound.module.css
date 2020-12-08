@@ -1,0 +1,30 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container h1 {
+  font-size: 15rem;
+  color: var(--tintColor);
+  font-weight: 600;
+}
+
+.container h5 {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: var(--primaryColor);
+}
+/*# sourceMappingURL=NotFound.module.css.map */
