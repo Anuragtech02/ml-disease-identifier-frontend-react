@@ -145,6 +145,7 @@
 
 .sidebar .actionPanel .search svg {
   fill: rgba(0, 0, 0, 0.5) !important;
+  margin-left: 10px;
 }
 
 .sidebar .actionPanel .search input {
@@ -535,9 +536,46 @@
   margin-right: 0 !important;
 }
 
+.forMobile {
+  display: none !important;
+}
+
 @media screen and (max-width: 1650px) {
   .sidebar .controlContainer {
     height: 100% !important;
+  }
+  .container {
+    height: 92vh;
+  }
+  .controlContainer,
+  .actionPanel,
+  .patientList {
+    border-radius: 0 !important;
+  }
+}
+
+.drawer {
+  display: none;
+}
+
+@media screen and (max-width: 1230px) {
+  .actionBtns {
+    display: none !important;
+  }
+  .forMobile {
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .drawer {
+    display: block;
+  }
+  .sidebar,
+  .hideOnMobile,
+  .gridContainer,
+  .container {
+    display: none !important;
   }
 }
 /*# sourceMappingURL=Doctor.module.css.map */

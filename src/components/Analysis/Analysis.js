@@ -124,11 +124,17 @@ const Analysis = () => {
       <motion.div
         className={styles.container}
         initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 50 }}
         transition={{ duration: 0.5 }}
       >
         <Grid container spacing={2}>
-          <Grid item md={showHeatmap ? 6 : 12} className={styles.formContainer}>
+          <Grid
+            item
+            lg={showHeatmap ? 6 : 12}
+            md={12}
+            sm={12}
+            className={styles.formContainer}
+          >
             <form onSubmit={onSubmit} encType="multipart/form-data">
               <Card className={styles.card}>
                 <div className={styles.outer}>
@@ -252,7 +258,13 @@ const Analysis = () => {
               </Card>
             </form>
           </Grid>
-          <Grid item md={showHeatmap ? 6 : 0} className={styles.chartContainer}>
+          <Grid
+            item
+            lg={showHeatmap ? 6 : 0}
+            md={showHeatmap ? 12 : 0}
+            sm={showHeatmap ? 12 : 0}
+            className={styles.heatmapContainer}
+          >
             {showHeatmap ? (
               <Card className={styles.heatmapCard}>
                 <IconButton

@@ -4,8 +4,7 @@
   align-items: center;
   flex-direction: column;
   height: 60vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   margin: 0;
 }
 .container {
@@ -189,9 +188,18 @@ form {
 .graphContainer {
   width: 100%;
 }
+.heatmapContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media screen and (max-width: 1650px) {
   .outerContainer {
-    height: 70vh;
+    height: 68vh !important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center !important;
+    overflow-y: scroll;
   }
 }
