@@ -9,7 +9,7 @@
 :root {
   --primaryColor: #004a83;
   --primaryColorLight: #1272bb;
-  --fixedWidth: 80%;
+  --fixedWidth: 90%;
   --lightBackground: #fdfdfd;
   --darkGreen: #047914;
 }
@@ -48,5 +48,11 @@
   opacity: 0;
   -webkit-transition: opacity 150ms linear;
   transition: opacity 150ms linear;
+}
+
+@media screen and (max-width: 1650px) {
+  :root {
+    --fixedWidth: 100%;
+  }
 }
 /*# sourceMappingURL=App.module.css.map */

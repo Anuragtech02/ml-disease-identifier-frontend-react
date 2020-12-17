@@ -39,7 +39,7 @@
       .icon {
         margin: 15px 0;
         svg {
-          fill: black !important;
+          fill: rgba(5, 5, 5, 0.5) !important;
         }
         &:nth-child(2) {
           background: white;
@@ -365,6 +365,23 @@
         }
         margin: 10px 0;
       }
+    }
+  }
+}
+.analysisBtn {
+  background: var(--primaryColor) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  margin-right: 10px !important;
+  &:nth-child(3) {
+    margin-right: 0 !important;
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .sidebar {
+    .controlContainer {
+      height: 100% !important;
     }
   }
 }

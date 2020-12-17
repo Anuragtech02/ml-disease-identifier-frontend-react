@@ -13,6 +13,7 @@ import {
   IconButton,
   Tooltip,
   Avatar,
+  Button,
   Menu,
   MenuItem,
 } from "@material-ui/core";
@@ -203,12 +204,12 @@ const Doctor = ({ history }) => {
   return (
     <div className={styles.container}>
       <Grid spacing={0} container className={styles.gridContainer}>
-        <Grid item xs={12} s={6} md={4} lg={4} xl={3}>
+        <Grid item xs={12} s={6} md={4} lg={3} xl={3}>
           <div className={styles.sidebar}>
             <Paper className={styles.controlContainer}>
               <div className={styles.control}>
                 <Tooltip placement="top" title="Add new patient">
-                  <IconButton className={styles.icon}>
+                  <IconButton disabled className={styles.icon}>
                     <CreateNewFolderIcon fontSize="default" />
                   </IconButton>
                 </Tooltip>
@@ -218,12 +219,12 @@ const Doctor = ({ history }) => {
                   </IconButton>
                 </Tooltip>
                 <Tooltip placement="top" title="Chats">
-                  <IconButton className={styles.icon}>
+                  <IconButton disabled className={styles.icon}>
                     <ChatIcon fontSize="default" />
                   </IconButton>
                 </Tooltip>
                 <Tooltip placement="top" title="Notifications">
-                  <IconButton className={styles.icon}>
+                  <IconButton disabled className={styles.icon}>
                     <NotificationsIcon fontSize="default" />
                   </IconButton>
                 </Tooltip>
@@ -282,7 +283,7 @@ const Doctor = ({ history }) => {
             </Paper>
           </div>
         </Grid>
-        <Grid item xs={12} s={6} md={8} lg={8} xl={9}>
+        <Grid item xs={12} s={6} md={8} lg={9} xl={9}>
           <PatientDetails
             history={history}
             patientId={patientId}
@@ -374,7 +375,34 @@ const PatientDetails = ({ history, patientId, data }) => {
           </div>
         </div>
         <div className={styles.iconContainer}>
-          <Menu
+          <Button
+            variant="contained"
+            onClick={() => {
+              history.push(`/doctor/patients/${data.id}/covid`);
+            }}
+            className={styles.analysisBtn}
+          >
+            Covid Analysis
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              history.push(`/doctor/patients/${data.id}/analysis`);
+            }}
+            className={styles.analysisBtn}
+          >
+            Other Diseases
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => {
+              history.push(`/doctor/patients/${data.id}/benchmark`);
+            }}
+            className={styles.analysisBtn}
+          >
+            Benchmarking
+          </Button>
+          {/* <Menu
             open={assessmentMenu}
             anchorEl={anchor}
             keepMounted
@@ -405,15 +433,15 @@ const PatientDetails = ({ history, patientId, data }) => {
             >
               Benchmarking
             </MenuItem>
-          </Menu>
-          <div className={styles.chat}>
+          </Menu> */}
+          {/* <div className={styles.chat}>
             <Tooltip placement="top" title="Chat">
               <IconButton>
                 <ChatIcon />
               </IconButton>
             </Tooltip>
-          </div>
-          <div className={classNames(styles.chat)}>
+          </div> */}
+          {/* <div className={classNames(styles.chat)}>
             <Tooltip placement="top" title="Assessment">
               <IconButton
                 onClick={handleMenu}
@@ -423,7 +451,7 @@ const PatientDetails = ({ history, patientId, data }) => {
                 <AssessmentIcon />
               </IconButton>
             </Tooltip>
-          </div>
+          </div> */}
         </div>
       </div>
       <ComponentToRender

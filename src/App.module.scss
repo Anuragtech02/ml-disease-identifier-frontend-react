@@ -7,7 +7,7 @@
 :root {
   --primaryColor: #004a83;
   --primaryColorLight: #1272bb;
-  --fixedWidth: 80%;
+  --fixedWidth: 90%;
   --lightBackground: #fdfdfd;
   --darkGreen: #047914;
 }
@@ -42,4 +42,10 @@
 .fade-exit.fade-exit-active {
   opacity: 0;
   transition: opacity 150ms linear;
+}
+
+@media screen and (max-width: 1650px) {
+  :root {
+    --fixedWidth: 100%;
+  }
 }
