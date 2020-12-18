@@ -96,6 +96,13 @@ const Analysis = () => {
         .then((res) => {
           console.log(res);
           let tempName = "";
+          if (res.data === -1) {
+            setLoading(false);
+            setAlpha(1);
+            setIsError(true);
+            setResult("Please upload proper X-Ray Image");
+            return;
+          }
           setTimeout(() => {
             res.data.heatmaps.forEach(
               (heatmap) => (tempName = tempName + heatmap.name + " found, ")

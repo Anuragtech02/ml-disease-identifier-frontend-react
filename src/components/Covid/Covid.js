@@ -76,7 +76,7 @@ const Covid = () => {
             if (res.data.Disease === 1) {
               setResult("High Risk of Covid!");
             } else if (res.data.Disease === 0) setResult("Low risk of Covid");
-            else setResult("Please upload proper Image");
+            else setResult("Please upload proper X-Ray image");
             setLoading(false);
             setAlpha(1);
             setIsError(false);
