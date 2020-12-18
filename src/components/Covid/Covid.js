@@ -73,9 +73,10 @@ const Covid = () => {
         .then((res) => {
           //   console.log(res);
           setTimeout(() => {
-            if (res.data.Disease) {
+            if (res.data.Disease === 1) {
               setResult("High Risk of Covid!");
-            } else setResult("Low risk of Covid");
+            } else if (res.data.Disease === 0) setResult("Low risk of Covid");
+            else setResult("Please upload proper Image");
             setLoading(false);
             setAlpha(1);
             setIsError(false);
@@ -91,7 +92,7 @@ const Covid = () => {
     <div className={styles.outerContainer}>
       <motion.div
         className={styles.container}
-        initial={{ opacity: 0, y: 100 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >

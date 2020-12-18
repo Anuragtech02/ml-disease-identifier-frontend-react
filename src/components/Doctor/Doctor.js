@@ -234,7 +234,7 @@ const Doctor = ({ history }) => {
             />
           </Grid>
           <Grid item xs={12} s={6} md={8} lg={9} xl={9}>
-            <div className={styles.hideOnMobile}>
+            <div className={styles.hideOnMobile} style={{ height: "100%" }}>
               <PatientDetails
                 history={history}
                 patientId={patientId}
