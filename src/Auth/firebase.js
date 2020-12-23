@@ -4,14 +4,13 @@ import "firebase/firestore";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyAZwTxE00KpeF0b7uSevXZ-XjlUeOGEW6c",
-  authDomain: "lungsxrayfb.firebaseapp.com",
-  databaseURL: "https://lungsxrayfb.firebaseio.com",
-  projectId: "lungsxrayfb",
-  storageBucket: "lungsxrayfb.appspot.com",
-  messagingSenderId: "685530286068",
-  appId: "1:685530286068:web:f9f7ba5c5c92bbde525ba1",
-  measurementId: "G-S4BQQYSMM3",
+  apiKey: "AIzaSyBDdeiaGSBtD1jLYk_21-1HwoX8mdvfhT8",
+  authDomain: "lungs-xray.firebaseapp.com",
+  projectId: "lungs-xray",
+  storageBucket: "lungs-xray.appspot.com",
+  messagingSenderId: "908584438858",
+  appId: "1:908584438858:web:b9ceb0a1720722ef85aab3",
+  measurementId: "G-X290107LFL",
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

@@ -34,48 +34,46 @@ const LoginSignup = ({ history }) => {
 
   const signupSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   await firebase
-    //     .auth()
-    //     .createUserWithEmailAndPassword(signupEmail, signupPass)
-    //     .then(async () => {
-    //       const db = firebase.firestore();
-    //       const ref = db.collection("users");
-    //       const id = await ref.doc().id;
-    //       await ref.doc(id).set({
-    //         id,
-    //         email: signupEmail,
-    //         name: name,
-    //         category: category,
-    //         verification: verification,
-    //       });
-    //     })
-    //     .then(() => {
-    //       alert("User created succesfully :) ");
-    //       history.push("/welcome");
-    //     });
-    // } catch (error) {
-    //   alert(error);
-    // }
+    try {
+      await firebase
+        .auth()
+        .createUserWithEmailAndPassword(signupEmail, signupPass)
+        .then(async () => {
+          const db = firebase.firestore();
+          const ref = db.collection("users");
+          const id = await ref.doc().id;
+          await ref.doc(id).set({
+            id,
+            email: signupEmail,
+            name: name,
+            category: category,
+            verification: verification,
+          });
+        })
+        .then(() => {
+          alert("User created succesfully :) ");
+          history.push("/doctor/patients/ABC123");
+        });
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const loginSubmit = async (e) => {
     e.preventDefault();
-    // try {
-    //   await firebase.auth().signInWithEmailAndPassword(loginEmail, loginPass);
-    //   history.push("/welcome");
-    // } catch (error) {
-    //   alert(error);
-    // }
-    history.push("/doctor/patients/ABC123");
+    try {
+      await firebase.auth().signInWithEmailAndPassword(loginEmail, loginPass);
+      history.push("/doctor/patients/ABC123");
+    } catch (error) {
+      alert(error);
+    }
   };
 
-  // const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
-  // if (currentUser) {
-  //   history.push("/welcome");
-  //   return <Redirect to="/welcome" />;
-  // }
+  if (currentUser) {
+    history.push("/doctor/patients/ABC123");
+  }
 
   return (
     <motion.div

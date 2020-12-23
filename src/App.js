@@ -9,51 +9,55 @@ import {
   Doctor,
   NotFound,
 } from "./components";
+import PrivateRoute from "./Auth/PrivateRoute";
+import AuthProvider from "./Auth/Auth";
 
 const App = () => {
   return (
-    <Router>
-      <div className={styles.container}>
-        <NavBar />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/welcome" component={Welcome} />
-          <div
-            style={{
-              width: "100%",
-              height: "92vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Route exact path="/doctor" component={Doctor} />
-            <Route
-              exact
-              path="/doctor/patients/:patientId"
-              component={Doctor}
-            />
-            <Route
-              exact
-              path="/doctor/patients/:patientId/covid"
-              component={Doctor}
-            />
-            <Route
-              exact
-              path="/doctor/patients/:patientId/analysis"
-              component={Doctor}
-            />
-            <Route
-              exact
-              path="/doctor/patients/:patientId/benchmark"
-              component={Doctor}
-            />
-            {/* <Route component={NotFound} /> */}
-          </div>
-        </Switch>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className={styles.container}>
+          <NavBar />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/about" component={About} />
+            <PrivateRoute path="/welcome" component={Welcome} />
+            <div
+              style={{
+                width: "100%",
+                height: "92vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <PrivateRoute exact path="/doctor" component={Doctor} />
+              <PrivateRoute
+                exact
+                path="/doctor/patients/:patientId"
+                component={Doctor}
+              />
+              <PrivateRoute
+                exact
+                path="/doctor/patients/:patientId/covid"
+                component={Doctor}
+              />
+              <PrivateRoute
+                exact
+                path="/doctor/patients/:patientId/analysis"
+                component={Doctor}
+              />
+              <PrivateRoute
+                exact
+                path="/doctor/patients/:patientId/benchmark"
+                component={Doctor}
+              />
+              {/* <Route component={NotFound} /> */}
+            </div>
+          </Switch>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 };
 
