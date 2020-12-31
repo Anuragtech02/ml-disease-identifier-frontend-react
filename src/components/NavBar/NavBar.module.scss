@@ -16,7 +16,7 @@ nav {
   width: calc(var(--fixedWidth) - 2rem);
   margin: auto;
   align-items: center;
-  min-height: 8vh;
+  min-height: 75px;
 }
 .navLinks {
   display: flex;
@@ -43,5 +43,11 @@ nav {
   transition: 0.2s ease-in-out;
   &:hover {
     color: rgba(230, 25, 86, 0.8);
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .navLinks {
+    display: none;
   }
 }

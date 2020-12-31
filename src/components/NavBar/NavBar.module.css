@@ -28,7 +28,7 @@ nav {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  min-height: 8vh;
+  min-height: 75px;
 }
 
 .navLinks {
@@ -69,5 +69,11 @@ nav {
 
 .noDecoration:hover {
   color: rgba(230, 25, 86, 0.8);
+}
+
+@media screen and (max-width: 960px) {
+  .navLinks {
+    display: none;
+  }
 }
 /*# sourceMappingURL=NavBar.module.css.map */

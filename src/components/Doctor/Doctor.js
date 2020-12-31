@@ -24,6 +24,7 @@ import {
   ListItemText,
   Divider,
   Drawer,
+  SwipeableDrawer,
 } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
@@ -219,22 +220,25 @@ const Doctor = ({ history }) => {
   const { patientId } = useParams();
 
   const dataById = patients.filter((patient) => patient.id === patientId);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <>
       <div className={styles.container}>
         <Grid spacing={0} container className={styles.gridContainer}>
-          <Grid item xs={12} s={6} md={4} lg={3} xl={3}>
-            <Sidebar
-              patientSearch={patientSearch}
-              setPatientSearch={setPatientSearch}
-              history={history}
-              patients={patients}
-              patientId={patientId}
-            />
+          <Grid item xs={0} s={6} md={4} lg={3} xl={3}>
+            <div className={styles.hideOnMobile}>
+              <Sidebar
+                patientSearch={patientSearch}
+                setPatientSearch={setPatientSearch}
+                history={history}
+                patients={patients}
+                patientId={patientId}
+              />
+            </div>
           </Grid>
           <Grid item xs={12} s={6} md={8} lg={9} xl={9}>
-            <div className={styles.hideOnMobile} style={{ height: "100%" }}>
+            <div style={{ height: "100%" }}>
               <PatientDetails
                 history={history}
                 patientId={patientId}
@@ -245,7 +249,25 @@ const Doctor = ({ history }) => {
         </Grid>
       </div>
       <div className={styles.drawer}>
-        <SideDrawer history={history} dataById={dataById} />
+        <div
+          className={styles.burgerMenu}
+          onClick={() => {
+            setDrawerOpen(true);
+          }}
+        >
+          <div className={styles.burger}></div>
+          <div className={styles.burger}></div>
+          <div className={styles.burger}></div>
+        </div>
+        <SideDrawer
+          history={history}
+          drawerOpen={drawerOpen}
+          setDrawerOpen={setDrawerOpen}
+          patientId={patientId}
+          patients={patients}
+          patientSearch={patientSearch}
+          setPatientSearch={setPatientSearch}
+        />
       </div>
     </>
   );
@@ -563,164 +585,47 @@ const PatientData = ({ data }) => {
   );
 };
 
-const SideDrawer = ({ history, patientId, dataById }) => {
+const SideDrawer = ({
+  history,
+  patientId,
+  patients,
+  patientSearch,
+  drawerOpen,
+  setDrawerOpen,
+  setPatientSearch,
+}) => {
   const drawerWidth = 240;
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: "flex",
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-    },
-    appBarShift: {
-      marginLeft: drawerWidth,
-      width: `calc(100% - ${drawerWidth}px)`,
-      transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    menuButton: {
-      marginRight: 36,
-    },
-    hide: {
-      display: "none",
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-      whiteSpace: "nowrap",
-    },
-    drawerOpen: {
-      width: drawerWidth,
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    drawerClose: {
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      overflowX: "hidden",
-      width: theme.spacing(7) + 1,
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9) + 1,
-      },
-    },
-    toolbar: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-    },
-  }));
+  const useStyles = makeStyles((theme) => ({}));
 
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setDrawerOpen(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setDrawerOpen(false);
   };
 
   return (
     <>
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
+      <SwipeableDrawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={handleDrawerClose}
+        onOpen={handleDrawerOpen}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, {
-              [classes.hide]: open,
-            })}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            AAIWAY
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        })}
-        classes={{
-          paper: clsx({
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          }),
-        }}
-      >
-        <div className={classes.toolbar}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List></List>
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <div>
-          <PatientDetails
-            history={history}
-            patientId={patientId}
-            data={dataById[0]}
-          />
-        </div>
-      </main>
+        <Sidebar
+          history={history}
+          patientId={patientId}
+          patients={patients}
+          patientSearch={patientSearch}
+          setPatientSearch={setPatientSearch}
+        />
+      </SwipeableDrawer>
     </>
   );
 };
@@ -806,6 +711,7 @@ const Sidebar = ({
             );
           })}
         </div>
+        <p className={styles.swipeRight}>Swipe right to close</p>
       </Paper>
     </div>
   );
