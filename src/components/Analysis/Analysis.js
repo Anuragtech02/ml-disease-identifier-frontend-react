@@ -270,6 +270,7 @@ const Analysis = () => {
             lg={showHeatmap ? 6 : 0}
             md={showHeatmap ? 12 : 0}
             sm={showHeatmap ? 12 : 0}
+            xs={showHeatmap ? 12 : 0}
             className={styles.heatmapContainer}
           >
             {showHeatmap ? (

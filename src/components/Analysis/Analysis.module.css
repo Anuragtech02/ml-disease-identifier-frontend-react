@@ -306,4 +306,32 @@ form {
     overflow-y: scroll;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .outer {
+    width: 300px !important;
+    padding: 10px 0;
+    -webkit-box-pack: start !important;
+        -ms-flex-pack: start !important;
+            justify-content: flex-start !important;
+  }
+  .submitBtn {
+    width: 300px;
+  }
+  .content1,
+  .content2 {
+    width: 300px !important;
+    height: 100%;
+  }
+  .content2 {
+    margin: 0;
+  }
+  .rightActive {
+    -webkit-transform: translateX(-300px) !important;
+            transform: translateX(-300px) !important;
+  }
+  form {
+    padding: 0 10px;
+  }
+}
 /*# sourceMappingURL=Analysis.module.css.map */

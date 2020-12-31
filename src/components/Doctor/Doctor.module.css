@@ -16,6 +16,12 @@
   height: 100% !important;
 }
 
+.componentToRender {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
 .sidebar {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -29,7 +35,7 @@
   min-width: 250px;
   z-index: 0;
   overflow: hidden;
-  height: 100%;
+  height: 100% !important;
   padding: 1px 0;
 }
 
@@ -357,7 +363,7 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  height: 100%;
+  height: 100% !important;
 }
 
 .patientDetails ::-webkit-scrollbar {
@@ -634,6 +640,9 @@
   }
   .sidebar .actionPanel {
     width: 100% !important;
+  }
+  .componentToRender {
+    padding: 10px 0;
   }
 }
 /*# sourceMappingURL=Doctor.module.css.map */

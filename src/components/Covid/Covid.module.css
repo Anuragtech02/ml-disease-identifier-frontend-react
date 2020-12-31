@@ -1,10 +1,20 @@
 .outerContainer {
-  display: -ms-grid;
-  display: grid;
-  place-items: center;
-  height: 55vh;
-  overflow-y: auto;
-  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 60vh;
+  overflow: hidden;
+  margin: 0;
 }
 
 .container {
@@ -14,12 +24,12 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: auto;
+  margin: 0;
+  margin-left: 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  height: 100%;
 }
 
 .content1 {
@@ -267,5 +277,61 @@ form {
 
 .graphContainer {
   width: 100%;
+}
+
+.heatmapContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media screen and (max-width: 1650px) {
+  .outerContainer {
+    height: 68vh !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+            align-items: center !important;
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .outer {
+    width: 300px !important;
+    padding: 10px 0;
+    -webkit-box-pack: start !important;
+        -ms-flex-pack: start !important;
+            justify-content: flex-start !important;
+  }
+  .submitBtn {
+    width: 300px;
+  }
+  .content1,
+  .content2 {
+    width: 300px !important;
+    height: 100%;
+  }
+  .content2 {
+    margin: 0;
+  }
+  .rightActive {
+    -webkit-transform: translateX(-300px) !important;
+            transform: translateX(-300px) !important;
+  }
+  form {
+    padding: 0 10px;
+  }
 }
 /*# sourceMappingURL=Covid.module.css.map */

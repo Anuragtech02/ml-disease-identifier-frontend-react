@@ -203,3 +203,28 @@ form {
     overflow-y: scroll;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .outer {
+    width: 300px !important;
+    padding: 10px 0;
+    justify-content: flex-start !important;
+  }
+  .submitBtn {
+    width: 300px;
+  }
+  .content1,
+  .content2 {
+    width: 300px !important;
+    height: 100%;
+  }
+  .content2 {
+    margin: 0;
+  }
+  .rightActive {
+    transform: translateX(-300px) !important;
+  }
+  form {
+    padding: 0 10px;
+  }
+}

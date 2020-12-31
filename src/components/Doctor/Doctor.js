@@ -227,7 +227,7 @@ const Doctor = ({ history }) => {
       <div className={styles.container}>
         <Grid spacing={0} container className={styles.gridContainer}>
           <Grid item xs={0} s={6} md={4} lg={3} xl={3}>
-            <div className={styles.hideOnMobile}>
+            <div className={styles.hideOnMobile} style={{ height: "100%" }}>
               <Sidebar
                 patientSearch={patientSearch}
                 setPatientSearch={setPatientSearch}
@@ -277,7 +277,7 @@ export default withRouter(Doctor);
 
 const ComponentToRender = ({ component: Component, props }) => {
   return (
-    <div style={{ height: "100%", width: "100%", padding: "20px" }}>
+    <div className={styles.componentToRender}>
       <Component {...props} />
     </div>
   );
