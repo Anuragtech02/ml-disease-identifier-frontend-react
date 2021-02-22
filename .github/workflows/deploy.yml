@@ -32,9 +32,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           script: |
             cd /var/www/lungs.aaiwayindia.com
-            mkdir new-test
-            cd new-test
-            git pull origin master
+            git clone https://anuragtech2/ml-disease-identifier-frontend-react.git
             cd ml-disease-identifier-frontend-react
             npm install
             npm run build
